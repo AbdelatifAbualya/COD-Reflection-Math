@@ -37,8 +37,7 @@ module.exports = async (req, res) => {
       });
     }
 
-    console.log('Processing request:', { 
-      model, 
+    console.log('Processing request for model:', model, { 
       messageCount: messages.length, 
       stream: !!stream,
       toolsEnabled: !!(tools && tools.length > 0),
@@ -49,17 +48,15 @@ module.exports = async (req, res) => {
     const fireworksPayload = {
       model,
       messages,
-      // DeepSeek-V3-0324 optimized parameters
-      temperature: temperature || 0.3, // DeepSeek optimized default
-      top_p: top_p || 0.9,
-      top_k: top_k || 40,
+      temperature: temperature !== undefined ? temperature : 0.3, // Default if not provided
+      top_p: top_p !== undefined ? top_p : 0.9,
+      top_k: top_k !== undefined ? top_k : 40,
       max_tokens: max_tokens || 8192,
       presence_penalty: presence_penalty || 0,
       frequency_penalty: frequency_penalty || 0,
-      stream: stream || false
+      stream: stream || false // Note: CoD stages are non-streaming in frontend logic
     };
 
-    // Add tools if provided
     if (tools && tools.length > 0) {
       fireworksPayload.tools = tools;
       if (tool_choice) {
@@ -70,10 +67,10 @@ module.exports = async (req, res) => {
     const fireworksHeaders = {
       'Authorization': `Bearer ${apiKey}`,
       'Content-Type': 'application/json',
-      'User-Agent': 'Advanced-CoD-Studio/1.0'
+      'User-Agent': 'Enhanced-CoD-Studio/2.0' // Updated user agent
     };
 
-    // Handle streaming responses
+    // Handle streaming responses (though frontend CoD logic is non-streaming for stages)
     if (stream) {
       fireworksHeaders['Accept'] = 'text/event-stream';
       
@@ -85,57 +82,38 @@ module.exports = async (req, res) => {
 
       if (!response.ok) {
         const errorText = await response.text();
-        console.error('Fireworks API Error (Streaming):', response.status, errorText);
-        
-        // Handle specific DeepSeek-V3-0324 errors
-        let errorMessage = errorText;
-        if (response.status === 429) {
-          errorMessage = 'Rate limit exceeded. DeepSeek-V3-0324 has usage limits.';
-        } else if (response.status === 401) {
-          errorMessage = 'Invalid API key or insufficient permissions for DeepSeek-V3-0324.';
-        } else if (response.status === 400) {
-          errorMessage = 'Invalid request format for DeepSeek-V3-0324. Check parameters.';
-        }
-        
-        return res.status(response.status).json({ 
-          error: 'API request failed',
-          message: errorMessage 
-        });
+        console.error(`Fireworks API Error (Streaming, Model: ${model}):`, response.status, errorText);
+        let errorMessage = `API request failed for model ${model}. ${errorText}`;
+        // Add specific error messages if needed based on model behavior
+        return res.status(response.status).json({ error: 'API request failed', message: errorMessage });
       }
 
-      // Set headers for streaming
       res.setHeader('Content-Type', 'text/event-stream');
       res.setHeader('Cache-Control', 'no-cache');
       res.setHeader('Connection', 'keep-alive');
-      res.setHeader('Access-Control-Allow-Origin', '*');
-      res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-      res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+      // CORS headers already set
 
       if (!response.body) {
-        return res.status(500).json({ error: 'No response body from DeepSeek-V3-0324 API' });
+        return res.status(500).json({ error: `No response body from API for model ${model}` });
       }
 
-      // Handle streaming with proper async iteration
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
-
       try {
         while (true) {
           const { done, value } = await reader.read();
           if (done) break;
-          
           const chunk = decoder.decode(value, { stream: true });
           res.write(chunk);
         }
         res.end();
       } catch (error) {
-        console.error('Streaming error with DeepSeek-V3-0324:', error);
-        res.write(`data: {"error": "Streaming interrupted"}\n\n`);
+        console.error(`Streaming error (Model: ${model}):`, error);
+        res.write(`data: {"error": "Streaming interrupted for model ${model}"}\n\n`);
         res.end();
       }
 
-    } else {
-      // Handle non-streaming responses
+    } else { // Handle non-streaming responses (used by CoD stages)
       const response = await fetch('https://api.fireworks.ai/inference/v1/chat/completions', {
         method: 'POST',
         headers: fireworksHeaders,
@@ -144,54 +122,39 @@ module.exports = async (req, res) => {
 
       if (!response.ok) {
         const errorText = await response.text();
-        console.error('Fireworks API Error (Non-streaming):', response.status, errorText);
-        
-        // Handle specific DeepSeek-V3-0324 errors
-        let errorMessage = errorText;
-        if (response.status === 429) {
-          errorMessage = 'Rate limit exceeded. DeepSeek-V3-0324 has usage limits.';
+        console.error(`Fireworks API Error (Non-streaming, Model: ${model}):`, response.status, errorText);
+        let errorMessage = `API request failed for model ${model}. ${errorText}`;
+         if (response.status === 429) {
+          errorMessage = `Rate limit exceeded for model ${model}. Check usage limits.`;
         } else if (response.status === 401) {
-          errorMessage = 'Invalid API key or insufficient permissions for DeepSeek-V3-0324.';
+          errorMessage = `Invalid API key or insufficient permissions for model ${model}.`;
         } else if (response.status === 400) {
-          errorMessage = 'Invalid request format for DeepSeek-V3-0324. Check parameters.';
+          errorMessage = `Invalid request format for model ${model}. Check parameters. Details: ${errorText}`;
         } else if (response.status === 503) {
-          errorMessage = 'DeepSeek-V3-0324 service temporarily unavailable. Try again later.';
+          errorMessage = `Service for model ${model} temporarily unavailable. Try again later.`;
         }
-        
-        return res.status(response.status).json({ 
-          error: 'API request failed',
-          message: errorMessage 
-        });
+        return res.status(response.status).json({ error: 'API request failed', message: errorMessage });
       }
 
       const data = await response.json();
-      
-      // Log DeepSeek-V3-0324 usage stats
       if (data.usage) {
-        console.log('DeepSeek-V3-0324 Usage:', {
+        console.log(`API Usage (Model: ${model}):`, {
           prompt_tokens: data.usage.prompt_tokens,
           completion_tokens: data.usage.completion_tokens,
           total_tokens: data.usage.total_tokens
         });
       }
-      
       return res.status(200).json(data);
     }
 
   } catch (error) {
-    console.error('Server error with DeepSeek-V3-0324:', error);
-    
-    // Enhanced error handling for DeepSeek-V3-0324
+    console.error('Server error:', error);
     let errorMessage = error.message;
     if (error.message.includes('fetch')) {
-      errorMessage = 'Network error connecting to DeepSeek-V3-0324. Check your internet connection.';
+      errorMessage = 'Network error connecting to the API. Check your internet connection or API endpoint.';
     } else if (error.message.includes('timeout')) {
-      errorMessage = 'Request timeout with DeepSeek-V3-0324. The model may be processing a complex request.';
+      errorMessage = 'Request timeout with the API. The model may be processing a complex request or the service is slow.';
     }
-    
-    return res.status(500).json({ 
-      error: 'Internal server error',
-      message: errorMessage 
-    });
+    return res.status(500).json({ error: 'Internal server error', message: errorMessage });
   }
 };
