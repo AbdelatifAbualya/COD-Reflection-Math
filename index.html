@@ -1,9 +1,10 @@
+```html
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Enhanced Chain of Draft Studio - DeepSeek V3-0324 with Advanced Reflection</title>
+  <title>Enhanced Chain of Draft Studio - Multi-Model Reasoning</title>
   
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -49,7 +50,7 @@
               800: '#0d1117',
               900: '#030712',
             },
-            deepseek: {
+            deepseek: { // Maintained for general UI theming
               100: '#f0f9ff',
               200: '#e0f2fe',
               300: '#7dd3fc',
@@ -75,7 +76,7 @@
     :root {
       --primary: #5686f5;
       --primary-hover: #4169e1;
-      --deepseek: #0ea5e9;
+      --deepseek: #0ea5e9; /* Maintained for general UI theming */
       --success: #10b981;
       --warning: #f59e0b;
       --error: #ef4444;
@@ -242,7 +243,7 @@
           </div>
           <div>
             <h2 class="text-lg font-bold text-white">Enhanced CoD Studio</h2>
-            <p class="text-xs text-deepseek-300">DeepSeek V3-0324 + Advanced Reflection</p>
+            <p class="text-xs text-deepseek-300">Multi-Model Reasoning</p>
           </div>
         </div>
         
@@ -257,16 +258,28 @@
 
       <!-- System Status -->
       <div class="p-4 border-b border-dark-600/50">
-        <!-- DeepSeek Status -->
+        <!-- Stage 1 Model Status -->
         <div class="bg-gradient-to-r from-deepseek-900/20 to-blue-900/20 border border-deepseek-500/30 rounded-lg p-3 mb-3">
           <div class="flex items-center justify-between mb-2">
             <div class="flex items-center gap-2">
               <div class="w-2 h-2 bg-deepseek-400 rounded-full animate-pulse"></div>
-              <span class="text-deepseek-300 text-sm font-medium">DeepSeek V3-0324</span>
+              <span class="text-deepseek-300 text-sm font-medium">Stage 1: DeepSeek V3</span>
             </div>
             <span id="modelStatus" class="text-deepseek-400 text-xs bg-deepseek-900/30 px-2 py-1 rounded-full">Active</span>
           </div>
-          <div class="text-deepseek-200 text-xs">Latest reasoning model with reflection</div>
+          <div class="text-deepseek-200 text-xs">Analysis & Draft Generation</div>
+        </div>
+
+        <!-- Stage 2 Model Status -->
+        <div class="bg-gradient-to-r from-purple-900/20 to-indigo-900/20 border border-purple-500/30 rounded-lg p-3 mb-3">
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+              <span class="text-purple-300 text-sm font-medium">Stage 2: Qwen3-30b</span>
+            </div>
+            <span id="stage2ModelStatus" class="text-purple-400 text-xs bg-purple-900/30 px-2 py-1 rounded-full">Active</span>
+          </div>
+          <div class="text-purple-200 text-xs">Verification & Refinement</div>
         </div>
         
         <!-- Memory Status -->
@@ -399,12 +412,14 @@
     <div class="flex-1 flex flex-col overflow-hidden">
       <!-- Header -->
       <header class="bg-dark-700 border-b border-dark-600 h-16 flex items-center justify-between px-4 md:px-6">
-        <h1 id="pageTitle" class="text-xl font-semibold">Enhanced CoD Studio - DeepSeek V3-0324</h1>
+        <h1 id="pageTitle" class="text-xl font-semibold">Enhanced CoD Studio - Multi-Model</h1>
         <div class="flex items-center gap-3">
           <div id="currentModelDisplay" class="bg-dark-600 text-sm px-3 py-1.5 rounded-lg flex items-center gap-2">
             <div class="w-2 h-2 bg-deepseek-400 rounded-full animate-pulse"></div>
-            <span id="modelDisplayText">DeepSeek V3-0324</span>
-            <span id="adaptiveIndicator" class="hidden bg-purple-500/20 text-purple-300 text-xs px-2 py-1 rounded-full">🧠 Adaptive</span>
+            <span id="modelDisplayText">Stage 1: DeepSeek V3</span>
+            <span class="mx-1 text-gray-500">|</span>
+            <div class="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+            <span id="stage2ModelDisplayText">Stage 2: Qwen3</span>
           </div>
           <button id="openSettings" class="flex items-center gap-1.5 bg-dark-600 hover:bg-dark-500 text-gray-300 px-3 py-1.5 rounded-lg transition">
             <span>Settings</span>
@@ -439,7 +454,7 @@
 
         <div class="flex items-start gap-3 rounded-xl bg-dark-600 p-3 shadow-lg border border-dark-500 focus-within:border-deepseek-500 transition">
           <div class="flex-1">
-            <textarea id="userInput" rows="1" class="w-full bg-dark-700 text-gray-100 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-deepseek-500 resize-none text-base" placeholder="Ask a complex research question for enhanced CoD reasoning with DeepSeek V3-0324..."></textarea>
+            <textarea id="userInput" rows="1" class="w-full bg-dark-700 text-gray-100 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-deepseek-500 resize-none text-base" placeholder="Ask a complex research question for multi-stage CoD reasoning..."></textarea>
           </div>
           <div class="flex flex-col gap-2 mt-1">
             <button id="sendBtn" class="deepseek-gradient hover:from-deepseek-600 hover:to-deepseek-700 text-white p-3 rounded-lg transition deepseek-glow">
@@ -473,7 +488,7 @@
   <div id="settingsModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 hidden">
     <div class="bg-dark-700 rounded-xl shadow-2xl max-w-5xl w-full mx-4 max-h-[90vh] overflow-y-auto">
       <div class="p-5 border-b border-dark-600 flex justify-between items-center">
-        <h2 class="text-xl font-semibold">Enhanced AI Configuration - DeepSeek V3-0324</h2>
+        <h2 class="text-xl font-semibold">Enhanced AI Configuration</h2>
         <button id="closeModalX" class="text-gray-400 hover:text-white">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -484,7 +499,7 @@
       <div class="p-5">
         <!-- Tab Navigation -->
         <div class="bg-dark-600 rounded-lg p-1 flex mb-5 overflow-x-auto">
-          <button class="tab-btn flex-shrink-0 py-2 px-4 rounded-md text-white bg-deepseek-500" data-tab="modelTab">🤖 Model</button>
+          <button class="tab-btn flex-shrink-0 py-2 px-4 rounded-md text-white bg-deepseek-500" data-tab="modelTab">🤖 Models</button>
           <button class="tab-btn flex-shrink-0 py-2 px-4 rounded-md text-gray-400 transition" data-tab="codTab">🧠 CoD Settings</button>
           <button class="tab-btn flex-shrink-0 py-2 px-4 rounded-md text-gray-400 transition" data-tab="parametersTab">⚙️ Parameters</button>
           <button class="tab-btn flex-shrink-0 py-2 px-4 rounded-md text-gray-400 transition" data-tab="reflectionTab">🔄 Reflection</button>
@@ -492,35 +507,36 @@
         
         <!-- Model Selection Tab -->
         <div id="modelTab" class="tab-content">
-          <h3 class="text-lg font-medium mb-4 pb-2 border-b border-dark-600">DeepSeek V3-0324 Configuration</h3>
+          <h3 class="text-lg font-medium mb-4 pb-2 border-b border-dark-600">Model Configuration</h3>
           
-          <!-- DeepSeek Model Info -->
+          <!-- Stage 1 Model Info -->
           <div class="mb-6">
             <div class="bg-gradient-to-r from-deepseek-900/20 to-blue-900/20 border border-deepseek-500/30 rounded-lg p-4">
               <div class="flex items-center text-deepseek-300 text-sm font-medium mb-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-                DeepSeek V3-0324 - Latest Reasoning Model
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                Stage 1: DeepSeek V3-0324 (Analysis & Draft)
                 <span class="bg-deepseek-600/20 text-deepseek-300 text-xs px-2 py-1 rounded-full ml-2">FIREWORKS.AI</span>
               </div>
-              <div class="text-deepseek-100 text-xs space-y-1">
-                <p>• 671B total parameters with 37B activated per token (MoE architecture)</p>
-                <p>• Enhanced reasoning capabilities with R1 distillation</p>
-                <p>• Optimized for complex problem-solving and mathematical reasoning</p>
-                <p>• Built-in verification and reflection patterns</p>
+              <input type="text" id="modelPathStage1" value="accounts/fireworks/models/deepseek-v3-0324" readonly
+                     class="w-full bg-dark-700 text-gray-100 rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-deepseek-500 font-mono">
+              <div class="text-deepseek-100 text-xs space-y-1 mt-2">
+                <p>• Optimized for complex problem-solving and initial reasoning.</p>
               </div>
             </div>
           </div>
           
-          <!-- Model Path Configuration -->
+          <!-- Stage 2 Model Info -->
           <div class="mb-6">
-            <h4 class="text-sm font-medium text-gray-300 mb-3">Model Path</h4>
-            <div class="bg-dark-600 rounded-lg p-4 border border-dark-500">
-              <input type="text" id="modelPath" value="accounts/fireworks/models/deepseek-v3-0324" readonly
-                     class="w-full bg-dark-700 text-gray-100 rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-deepseek-500 font-mono">
-              <div class="text-xs text-gray-400 mt-2">
-                Model path for Fireworks.ai API - DeepSeek V3-0324 is the latest version with enhanced reasoning
+            <div class="bg-gradient-to-r from-purple-900/20 to-indigo-900/20 border border-purple-500/30 rounded-lg p-4">
+              <div class="flex items-center text-purple-300 text-sm font-medium mb-2">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                Stage 2: Qwen3-30b (Verification & Refinement)
+                <span class="bg-purple-600/20 text-purple-300 text-xs px-2 py-1 rounded-full ml-2">FIREWORKS.AI</span>
+              </div>
+               <input type="text" id="modelPathStage2" value="accounts/fireworks/models/qwen3-30b-a3b" readonly
+                     class="w-full bg-dark-700 text-gray-100 rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 font-mono">
+              <div class="text-purple-100 text-xs space-y-1 mt-2">
+                <p>• Strong analytical model for verification and refining solutions.</p>
               </div>
             </div>
           </div>
@@ -531,10 +547,10 @@
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
-              DeepSeek Temperature Mapping
+              Model Temperature Mapping
             </div>
             <div class="text-blue-100 text-xs">
-              DeepSeek V3-0324 uses temperature mapping: API temp 1.0 → Model temp 0.3 for optimal performance
+              Models like DeepSeek V3 may use temperature mapping (e.g., API temp 1.0 → Model temp 0.3). Qwen3 may have its own characteristics. Adjust temperature carefully.
             </div>
           </div>
         </div>
@@ -543,7 +559,6 @@
         <div id="codTab" class="tab-content hidden">
           <h3 class="text-lg font-medium mb-4 pb-2 border-b border-dark-600">Enhanced Chain of Draft Configuration</h3>
           
-          <!-- Reasoning Method Selection -->
           <div class="bg-dark-600 border border-dark-500 rounded-lg p-4 mb-5">
             <h4 class="text-sm font-medium text-gray-300 mb-3">Reasoning Method</h4>
             <div class="space-y-3">
@@ -559,72 +574,45 @@
                 <input type="radio" id="enhancedCoD" name="reasoningMethod" value="enhanced_cod" checked class="w-4 h-4 mt-1 text-deepseek-500 bg-dark-500 border-dark-400 focus:ring-deepseek-500 focus:ring-offset-dark-700">
                 <label for="enhancedCoD" class="ml-3 block text-sm font-medium text-white">
                   Enhanced Chain of Draft with Dual-Stage Verification
-                  <div class="text-gray-400 text-xs mt-1">Advanced CoD with two-stage API calls: Draft + Reflection → Final Verification & Answer</div>
+                  <div class="text-gray-400 text-xs mt-1">Advanced CoD with two-stage API calls: Draft (Stage 1) + Reflection/Verification (Stage 2) → Final Answer</div>
                 </label>
               </div>
             </div>
           </div>
           
-          <!-- CoD Word Limit Settings -->
           <div id="codWordLimitSection" class="mb-5">
-            <h4 class="text-sm font-medium text-gray-300 mb-3">CoD Word Limits (Research-Optimized)</h4>
+            <h4 class="text-sm font-medium text-gray-300 mb-3">CoD Word Limit (Per Step)</h4>
             <div class="bg-dark-600 border border-dark-500 rounded-lg p-4 space-y-3">
+              <p class="text-gray-400 text-xs mb-2">Set to 15 words per CoD step as per requirement. This ensures concise yet sufficiently detailed intermediate thoughts.</p>
               <div class="flex items-start">
-                <input type="radio" id="cod5Words" name="codWordLimit" value="5" checked class="w-4 h-4 mt-1 text-deepseek-500 bg-dark-500 border-dark-400">
-                <label for="cod5Words" class="ml-3 block text-sm font-medium text-white">
-                  5 words per step
-                  <div class="text-gray-400 text-xs mt-1">Original paper recommendation - maximum efficiency (7.6% of CoT tokens)</div>
-                </label>
-              </div>
-              
-              <div class="flex items-start">
-                <input type="radio" id="cod8Words" name="codWordLimit" value="8" class="w-4 h-4 mt-1 text-deepseek-500 bg-dark-500 border-dark-400">
-                <label for="cod8Words" class="ml-3 block text-sm font-medium text-white">
-                  8 words per step
-                  <div class="text-gray-400 text-xs mt-1">Enhanced clarity while maintaining efficiency - optimal for research</div>
-                </label>
-              </div>
-              
-              <div class="flex items-start">
-                <input type="radio" id="cod12Words" name="codWordLimit" value="12" class="w-4 h-4 mt-1 text-deepseek-500 bg-dark-500 border-dark-400">
-                <label for="cod12Words" class="ml-3 block text-sm font-medium text-white">
-                  12 words per step
-                  <div class="text-gray-400 text-xs mt-1">Balanced approach for complex scientific reasoning</div>
-                </label>
-              </div>
-              
-              <div class="flex items-start">
-                <input type="radio" id="cod15Words" name="codWordLimit" value="15" class="w-4 h-4 mt-1 text-deepseek-500 bg-dark-500 border-dark-400">
+                <input type="radio" id="cod15Words" name="codWordLimit" value="15" checked class="w-4 h-4 mt-1 text-deepseek-500 bg-dark-500 border-dark-400">
                 <label for="cod15Words" class="ml-3 block text-sm font-medium text-white">
                   15 words per step
-                  <div class="text-gray-400 text-xs mt-1">Detailed steps for mathematical and analytical tasks</div>
+                  <div class="text-gray-400 text-xs mt-1">Fixed limit for detailed steps in analysis and verification.</div>
                 </label>
               </div>
+               <!-- Other options can be hidden or disabled if 15 is mandatory -->
             </div>
           </div>
           
-          <!-- Adaptive Reasoning Section -->
           <div class="bg-gradient-to-r from-purple-900/20 to-blue-900/20 border border-purple-500/30 rounded-lg p-4 mb-5">
             <h4 class="text-sm font-medium text-purple-300 mb-3 flex items-center gap-2">
               <span>🧠</span>
-              Adaptive Reasoning Enhancement
-              <span class="bg-purple-600/20 text-purple-300 text-xs px-2 py-1 rounded-full">AI-POWERED</span>
+              Reasoning Depth Control
             </h4>
-            
             <div class="space-y-3">
-              <div class="flex items-start">
-                <input type="radio" id="adaptiveComplexity" name="reasoningEnhancement" value="adaptive" class="w-4 h-4 mt-1 text-purple-500 bg-dark-500 border-dark-400">
-                <label for="adaptiveComplexity" class="ml-3 block text-sm font-medium text-white">
-                  Adaptive Complexity Detection
-                  <div class="text-purple-200 text-xs mt-1">Automatically adjusts reasoning depth and word limits based on problem complexity analysis</div>
-                </label>
-              </div>
-              
               <div class="flex items-start">
                 <input type="radio" id="fixedReasoning" name="reasoningEnhancement" value="fixed" checked class="w-4 h-4 mt-1 text-purple-500 bg-dark-500 border-dark-400">
                 <label for="fixedReasoning" class="ml-3 block text-sm font-medium text-white">
-                  Fixed Reasoning Depth
-                  <div class="text-purple-200 text-xs mt-1">Uses consistent reasoning approach and word limits for all problems</div>
+                  Fixed Reasoning Depth (Recommended for CoD-15)
+                  <div class="text-purple-200 text-xs mt-1">Uses consistent CoD word limit (15 words) for all problems.</div>
+                </label>
+              </div>
+              <div class="flex items-start">
+                <input type="radio" id="adaptiveComplexity" name="reasoningEnhancement" value="adaptive" class="w-4 h-4 mt-1 text-purple-500 bg-dark-500 border-dark-400" disabled>
+                <label for="adaptiveComplexity" class="ml-3 block text-sm font-medium text-gray-500">
+                  Adaptive Complexity Detection (Currently Disabled)
+                  <div class="text-purple-200 text-xs mt-1 opacity-50">Automatically adjusts reasoning depth (CoD-15 is fixed).</div>
                 </label>
               </div>
             </div>
@@ -633,7 +621,7 @@
         
         <!-- Parameters Tab Content -->
         <div id="parametersTab" class="tab-content hidden">
-          <h3 class="text-lg font-medium mb-4 pb-2 border-b border-dark-600">DeepSeek V3-0324 Parameters</h3>
+          <h3 class="text-lg font-medium mb-4 pb-2 border-b border-dark-600">LLM Parameters (Applied to Both Stages)</h3>
           
           <div class="flex items-center justify-between mb-5 bg-dark-600 rounded-lg p-3 border border-dark-500">
             <label for="streamingToggle" class="flex items-center cursor-pointer">
@@ -642,7 +630,7 @@
               </svg>
               <div>
                 <div class="font-medium text-sm">Enable Streaming Responses</div>
-                <div class="text-gray-400 text-xs mt-0.5">See responses appear in real-time as they're generated</div>
+                <div class="text-gray-400 text-xs mt-0.5">See responses appear in real-time (Note: CoD stages are non-streaming internally).</div>
               </div>
             </label>
             <label class="relative inline-flex items-center cursor-pointer">
@@ -653,11 +641,11 @@
           
           <div class="mb-4">
             <div class="flex justify-between items-center mb-2">
-              <label for="temp" class="block text-sm font-medium text-gray-300">Temperature (Auto-mapped for DeepSeek)</label>
+              <label for="temp" class="block text-sm font-medium text-gray-300">Temperature</label>
               <span id="tempValue" class="text-sm text-gray-400">0.3</span>
             </div>
             <input type="range" id="temp" min="0" max="2" step="0.01" value="0.3" class="w-full h-2 rounded-lg appearance-none cursor-pointer">
-            <p class="text-xs text-gray-500 mt-1">DeepSeek automatically maps API temperature for optimal performance</p>
+            <p class="text-xs text-gray-500 mt-1">Controls randomness. Lower is more deterministic. Optimal values vary by model.</p>
           </div>
           
           <div class="mb-4">
@@ -684,13 +672,13 @@
               <span id="maxTokensValue" class="text-sm text-gray-400">8192</span>
             </div>
             <input type="range" id="maxTokens" min="1" max="16384" step="128" value="8192" class="w-full h-2 rounded-lg appearance-none cursor-pointer">
-            <p class="text-xs text-gray-500 mt-1">Maximum length of the response.</p>
+            <p class="text-xs text-gray-500 mt-1">Maximum length of the response for each stage.</p>
           </div>
         </div>
         
         <!-- Reflection Tab -->
         <div id="reflectionTab" class="tab-content hidden">
-          <h3 class="text-lg font-medium mb-4 pb-2 border-b border-dark-600">Advanced Reflection & Verification System</h3>
+          <h3 class="text-lg font-medium mb-4 pb-2 border-b border-dark-600">Advanced Reflection & Verification System (Stage 2 Focus)</h3>
           
           <div class="bg-gradient-to-r from-indigo-900/20 to-purple-900/20 border border-indigo-500/30 rounded-lg p-4 mb-6">
             <div class="flex items-center text-indigo-300 text-sm font-medium mb-2">
@@ -701,21 +689,19 @@
               <span class="bg-indigo-600/20 text-indigo-300 text-xs px-2 py-1 rounded-full ml-2">ENHANCED</span>
             </div>
             <div class="text-indigo-100 text-xs space-y-1">
-              <p><strong>Stage 1:</strong> Analysis → CoD Steps → Initial Reflection → Draft Solution</p>
-              <p><strong>Stage 2:</strong> Deep Verification → Error Checking → Final Reflection → Comprehensive Answer</p>
+              <p><strong>Stage 1 (DeepSeek V3):</strong> Analysis → CoD Steps (15 words/step) → Initial Reflection → Draft Solution</p>
+              <p><strong>Stage 2 (Qwen3-30b):</strong> Deep Verification (using CoD-15 for its reasoning) → Error Checking → Final Reflection → Comprehensive Answer</p>
             </div>
           </div>
           
-          <!-- Reflection Techniques -->
           <div class="mb-6">
-            <h4 class="text-sm font-medium text-gray-300 mb-4">Reflection Techniques</h4>
-            
+            <h4 class="text-sm font-medium text-gray-300 mb-4">Reflection Techniques (Primarily for Stage 2 Model's Process)</h4>
             <div class="space-y-3">
               <label class="flex items-start p-3 bg-dark-600 rounded-lg border border-dark-500 cursor-pointer hover:border-indigo-500/50 transition">
                 <input type="checkbox" id="enableSelfVerification" checked class="w-4 h-4 mt-1 text-indigo-500 bg-dark-500 border-dark-400 rounded focus:ring-indigo-500">
                 <div class="ml-3">
                   <div class="font-medium text-white">Self-Verification</div>
-                  <div class="text-gray-400 text-xs mt-1">Model checks its own reasoning steps for logical consistency</div>
+                  <div class="text-gray-400 text-xs mt-1">Stage 2 model checks its own verification reasoning and Stage 1's logic.</div>
                 </div>
               </label>
               
@@ -723,7 +709,7 @@
                 <input type="checkbox" id="enableErrorDetection" checked class="w-4 h-4 mt-1 text-indigo-500 bg-dark-500 border-dark-400 rounded focus:ring-indigo-500">
                 <div class="ml-3">
                   <div class="font-medium text-white">Error Detection & Correction</div>
-                  <div class="text-gray-400 text-xs mt-1">Actively searches for and corrects potential errors in reasoning</div>
+                  <div class="text-gray-400 text-xs mt-1">Stage 2 actively searches for and corrects errors from Stage 1.</div>
                 </div>
               </label>
               
@@ -731,7 +717,7 @@
                 <input type="checkbox" id="enableAlternativeSearch" checked class="w-4 h-4 mt-1 text-indigo-500 bg-dark-500 border-dark-400 rounded focus:ring-indigo-500">
                 <div class="ml-3">
                   <div class="font-medium text-white">Alternative Approach Search</div>
-                  <div class="text-gray-400 text-xs mt-1">Explores alternative solution paths to validate the primary approach</div>
+                  <div class="text-gray-400 text-xs mt-1">Stage 2 explores alternative solution paths if Stage 1 is suboptimal.</div>
                 </div>
               </label>
               
@@ -739,24 +725,23 @@
                 <input type="checkbox" id="enableConfidenceAssessment" checked class="w-4 h-4 mt-1 text-indigo-500 bg-dark-500 border-dark-400 rounded focus:ring-indigo-500">
                 <div class="ml-3">
                   <div class="font-medium text-white">Confidence Assessment</div>
-                  <div class="text-gray-400 text-xs mt-1">Evaluates confidence levels and identifies areas of uncertainty</div>
+                  <div class="text-gray-400 text-xs mt-1">Stage 2 evaluates confidence and identifies uncertainties in the final answer.</div>
                 </div>
               </label>
             </div>
           </div>
           
-          <!-- Verification Depth -->
           <div class="mb-6">
-            <h4 class="text-sm font-medium text-gray-300 mb-3">Verification Depth</h4>
+            <h4 class="text-sm font-medium text-gray-300 mb-3">Verification Depth (Stage 2)</h4>
             <div class="bg-dark-600 rounded-lg p-4">
               <select id="verificationDepth" class="w-full bg-dark-700 text-gray-100 rounded-lg p-3 border border-dark-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                <option value="basic">Basic - Quick validation of key steps</option>
-                <option value="standard" selected>Standard - Comprehensive verification</option>
-                <option value="deep">Deep - Exhaustive analysis with multiple approaches</option>
+                <option value="basic">Basic - Quick validation of key Stage 1 points</option>
+                <option value="standard" selected>Standard - Comprehensive verification of Stage 1</option>
+                <option value="deep">Deep - Exhaustive analysis with multiple checks</option>
                 <option value="research">Research - Academic-level rigor with extensive validation</option>
               </select>
               <div class="text-gray-400 text-xs mt-2">
-                Higher verification depth increases accuracy but requires more processing time
+                Higher verification depth for Stage 2 increases thoroughness but may require more processing.
               </div>
             </div>
           </div>
@@ -776,24 +761,26 @@
 
   <script>
     /***********************
-     * Enhanced Configuration for DeepSeek V3-0324
+     * Configuration for Multi-Model CoD
      ***********************/
     const CONFIG = {
-      // Model Configuration - Fixed to DeepSeek V3-0324
+      // Stage 1 Model (Analysis & Draft)
       currentModel: "accounts/fireworks/models/deepseek-v3-0324",
-      isVisionModel: false, // DeepSeek V3-0324 doesn't have vision capabilities
+      // Stage 2 Model (Verification & Refinement)
+      stage2Model: "accounts/fireworks/models/qwen3-30b-a3b",
+      isVisionModel: false, // Assuming DeepSeek V3 is not vision, Qwen3 might be but not used for image input here.
       
       // Enhanced Reasoning Configuration
-      reasoningMethod: "enhanced_cod", // New enhanced method
-      codWordLimit: 5, // Start with research-proven optimal
-      reasoningEnhancement: "fixed", // "adaptive" or "fixed"
+      reasoningMethod: "enhanced_cod", 
+      codWordLimit: 15, // Fixed to 15 words per CoD step
+      reasoningEnhancement: "fixed", // Ensures codWordLimit is respected, adaptive logic is bypassed for word limit.
       
-      // Two-Stage API Configuration
+      // Two-Stage API Configuration (Implicitly true by using two models)
       enableTwoStageAPI: true,
       stage1_analysis: true,
       stage2_verification: true,
       
-      // Reflection Configuration
+      // Reflection Configuration (Primarily for Stage 2's process)
       reflectionSettings: {
         enableSelfVerification: true,
         enableErrorDetection: true,
@@ -802,12 +789,12 @@
         verificationDepth: "standard" // basic, standard, deep, research
       },
       
-      // Generation Parameters (DeepSeek V3-0324 optimized)
-      temperature: 0.3, // DeepSeek's optimal temperature
+      // Generation Parameters (Applied to both stages unless overridden)
+      temperature: 0.3, 
       topP: 0.9,
       topK: 40,
-      maxTokens: 8192,
-      enableStreaming: true,
+      maxTokens: 8192, // Max tokens per stage response
+      enableStreaming: true, // For final display, CoD stages are internally non-streaming
       
       // Memory Configuration
       memoryCategories: {
@@ -829,99 +816,98 @@
     };
 
     /*====================================
-     * ENHANCED PROMPTS FOR DEEPSEEK V3-0324
+     * ENHANCED PROMPTS FOR MULTI-MODEL CoD
      ===================================*/
     const ENHANCED_PROMPTS = {
-      // Stage 1: Analysis + Initial CoD
-      stage1_analysis_cod: (wordLimit) => `You are DeepSeek V3-0324, an advanced reasoning model. This is STAGE 1 of a two-stage enhanced reasoning process.
+      // Stage 1: Analysis + Initial CoD (e.g., for DeepSeek V3)
+      stage1_analysis_cod: (wordLimit) => `You are an expert AI assistant. Your goal is to thoroughly analyze the user's request and draft a solution using the Chain of Draft (CoD) methodology. This is STAGE 1 of a two-stage process.
 
 CRITICAL INSTRUCTIONS:
-1. First, analyze the problem complexity and structure
-2. Then apply Chain of Draft (CoD) methodology with EXACTLY ${wordLimit} words per step
-3. Provide initial reflection on your reasoning
-4. End with a draft solution
+1.  **Comprehensive Analysis**: First, meticulously analyze every single part of the user's problem. Break it down into the smallest solvable components. Consider all constraints and requirements.
+2.  **Chain of Draft (CoD) Reasoning**: Apply CoD methodology. For each step of your thought process, generate a concise draft of EXACTLY ${wordLimit} words. Continue creating CoD steps until you have a complete plan to address the entire request. Do not limit the number of CoD steps; use as many as necessary.
+3.  **Initial Reflection**: After your CoD steps, provide a brief reflection on your reasoning, potential challenges, and overall confidence in your plan.
+4.  **Draft Solution**: Based on your CoD steps and reflection, provide a detailed draft of the solution. If it's code, ensure it is complete.
 
 FORMAT:
 #### PROBLEM ANALYSIS
-[Analyze complexity, identify key components, determine approach]
+[Your detailed breakdown and analysis of the user's request.]
 
 #### CHAIN OF DRAFT STEPS
-CoD Step 1: [${wordLimit} words maximum]
-CoD Step 2: [${wordLimit} words maximum]
-CoD Step 3: [${wordLimit} words maximum]
-[Continue as needed...]
+CoD Step 1: [${wordLimit} words maximum, focusing on the first part of your plan]
+CoD Step 2: [${wordLimit} words maximum, focusing on the next part of your plan]
+CoD Step 3: [${wordLimit} words maximum, ...]
+[... Continue CoD steps as many times as needed to cover the full plan ...]
 
 #### INITIAL REFLECTION
-[Reflect on reasoning quality, identify potential issues, assess confidence]
+[Your reflection on the reasoning process, potential issues, and confidence.]
 
 #### DRAFT SOLUTION
-[Provide initial solution based on CoD analysis]
+[Your initial, detailed solution based on the CoD analysis. If it's code, provide the complete code block.]
 
-Remember: This is STAGE 1. Be thorough but prepare for STAGE 2 verification.`,
+Remember: This is STAGE 1. Your aim is a comprehensive initial plan and draft. STAGE 2 will verify and refine this. Ensure every aspect of the user's request is addressed in your plan and draft solution.`,
 
-      // Stage 2: Deep Verification + Final Answer
-      stage2_verification: () => `You are DeepSeek V3-0324 in STAGE 2 of enhanced reasoning. You will now perform deep verification and provide the final comprehensive answer.
+      // Stage 2: Deep Verification + Final Answer (e.g., for Qwen3)
+      stage2_verification: () => `You are an expert AI code and solution analyst. This is STAGE 2 of a two-stage reasoning process. Your task is to critically review, verify, and refine the draft solution provided from STAGE 1 to ensure it 100% fulfills the original user request.
 
-Your task:
-1. CRITICALLY EXAMINE the Stage 1 analysis and CoD steps
-2. VERIFY each reasoning step for accuracy and logical consistency
-3. CHECK for mathematical errors, logical fallacies, or incomplete reasoning
-4. EXPLORE alternative approaches if needed
-5. ASSESS confidence levels and identify uncertainties
-6. PROVIDE a comprehensive final answer
+You will receive the original user problem and the STAGE 1 output (which includes Problem Analysis, Chain of Draft Steps, Initial Reflection, and a Draft Solution).
 
-VERIFICATION CHECKLIST:
-□ Are all CoD steps logically sound?
-□ Are there any mathematical or computational errors?
-□ Are assumptions clearly stated and reasonable?
-□ Have alternative approaches been considered?
-□ Is the reasoning complete and comprehensive?
-□ Are there any gaps or weaknesses in the logic?
+CRITICAL INSTRUCTIONS:
+1.  **Critical Examination**: Meticulously examine the STAGE 1 Problem Analysis, each CoD step, the Initial Reflection, and the Draft Solution.
+2.  **Verification**: Verify the logical soundness of each CoD step from Stage 1. Check the Draft Solution for accuracy, completeness, correctness (e.g., code syntax, logic), and adherence to all aspects of the original user request.
+3.  **Error Detection & Correction**: Identify any errors, omissions, logical fallacies, or areas where the Draft Solution does not fully meet the user's request. Propose specific corrections.
+4.  **Alternative Approaches (If Necessary)**: If the Stage 1 approach has significant flaws or a more optimal solution exists, briefly outline an alternative.
+5.  **Refinement using CoD-15**: For your own analysis and explanation during this verification stage, use Chain of Draft methodology with a 15-word limit per step to articulate your findings and reasoning for any proposed changes. Use as many CoD steps as needed for your verification.
+6.  **Final Comprehensive Answer**: Provide the final, polished, and comprehensive answer. If the Draft Solution was code, provide the corrected and finalized code. Ensure it 100% fulfills the original user request.
 
-FORMAT:
-#### STAGE 2 VERIFICATION
-[Critical analysis of Stage 1 reasoning]
+VERIFICATION CHECKLIST (Address these points in your analysis):
+□ Does the Stage 1 analysis fully capture all nuances of the user's request?
+□ Are all Stage 1 CoD steps logically sound and contribute effectively to the solution?
+□ Is the Draft Solution complete, correct, and robust?
+□ Are there any mathematical, logical, or coding errors in the Draft Solution?
+□ Are assumptions made in Stage 1 clearly stated and reasonable?
+□ Does the solution fully address every single aspect of the user's original problem?
+□ Could the solution be improved for clarity, efficiency, or to better meet user intent?
 
-#### ERROR DETECTION & CORRECTION
-[Identify and correct any errors found]
+FORMAT FOR YOUR RESPONSE:
+#### STAGE 2 VERIFICATION & ANALYSIS
+[Your critical analysis of the Stage 1 output. Use CoD-15 for your own reasoning steps here when explaining complex verification points or outlining your verification plan.]
+CoD Step 1 (Verification): [15 words max, e.g., "Stage 1 analysis correctly identifies core requirement but misses a subtle constraint regarding X."]
+CoD Step 2 (Verification): [15 words max, e.g., "Draft solution's function Y has a logical error in the conditional statement for Z."]
+[...More CoD steps for your verification reasoning as needed...]
 
-#### ALTERNATIVE APPROACH ANALYSIS
-[Consider alternative solution paths]
+#### ERROR DETECTION & CORRECTION PROPOSALS
+[Clearly list identified errors from Stage 1 and propose specific corrections.
+- Error 1: [Description of error in Stage 1 output] Proposed Correction: [Detailed correction]
+- Error 2: [Description of error in Stage 1 output] Proposed Correction: [Detailed correction]]
 
-#### CONFIDENCE ASSESSMENT
-[Evaluate confidence levels and identify uncertainties]
+#### ALTERNATIVE APPROACH ANALYSIS (Optional)
+[If applicable, briefly discuss any significantly better alternative approaches not considered in Stage 1.]
+
+#### CONFIDENCE ASSESSMENT (Stage 2)
+[Your confidence in the refined solution and its ability to meet all user needs comprehensively.]
 
 #### FINAL COMPREHENSIVE ANSWER
-[Definitive, well-reasoned solution with full explanation]
+[The definitive, well-reasoned, and polished solution. This should be the final output for the user. If code, provide the complete, corrected code block. Ensure this answer is self-contained and directly usable by the user.]
 
-#### REFLECTION SUMMARY
-[Key insights, lessons learned, and reasoning quality assessment]`
+#### REFLECTION SUMMARY (Stage 2)
+[Key insights from the verification process, lessons learned, and assessment of the final solution's quality and completeness.]`
     };
 
     /*====================================
-     * ADAPTIVE COMPLEXITY DETECTION (Enhanced)
+     * ADAPTIVE COMPLEXITY DETECTION (Retained for potential future use, but CoD word limit is fixed)
      ===================================*/
     function analyzeEnhancedComplexity(message) {
       const complexity = {
-        // Basic indicators
         hasMath: /[\d\+\-\*\/\=\(\)\^\%√∫∑∏]/.test(message),
         hasLogic: /\b(if|then|else|because|therefore|since|implies|prove|logic|reasoning|analyze|compare|evaluate|assess)\b/i.test(message),
         multiStep: /\b(first|next|then|after|finally|step|calculate|find|determine|process|stages?|phases?)\b/i.test(message),
-        
-        // Research indicators
         hasResearch: /\b(research|study|investigate|explore|examine|review|analysis|synthesis|comprehensive|methodology)\b/i.test(message),
         hasScientific: /\b(hypothesis|theory|experiment|data|statistical|scientific|empirical|peer.review|literature)\b/i.test(message),
-        
-        // Technical indicators
         hasCoding: /\b(code|programming|algorithm|function|class|variable|debug|implement|develop|software)\b/i.test(message),
         hasEngineering: /\b(design|optimization|system|architecture|performance|efficiency|scalability)\b/i.test(message),
-        
-        // Advanced indicators
         hasPhilosophy: /\b(ethics|moral|philosophical|ontology|epistemology|metaphysics|consciousness)\b/i.test(message),
         hasEconomics: /\b(economic|financial|market|trade|investment|fiscal|monetary|GDP|inflation)\b/i.test(message),
         hasMedicine: /\b(medical|clinical|diagnosis|treatment|patient|therapy|pharmaceutical|biological)\b/i.test(message),
-        
-        // Complexity metrics
         wordCount: countWords(message),
         sentenceCount: (message.match(/[.!?]+/g) || []).length,
         questionWords: (message.match(/\b(what|how|why|when|where|which|who)\b/gi) || []).length,
@@ -929,7 +915,6 @@ FORMAT:
         hasMultipleQuestions: (message.match(/\?/g) || []).length > 1
       };
 
-      // Enhanced scoring system
       let score = 0;
       if (complexity.hasMath) score += 2;
       if (complexity.hasLogic) score += 1;
@@ -946,72 +931,45 @@ FORMAT:
       if (complexity.questionWords > 3) score += 1;
       if (complexity.sentenceCount > 10) score += 1;
 
-      // Determine complexity level with enhanced categories
       if (score >= 8) {
         complexity.level = 'research_grade';
-        complexity.recommendedWordLimit = 15;
         complexity.recommendedVerification = 'research';
       } else if (score >= 6) {
         complexity.level = 'highly_complex';
-        complexity.recommendedWordLimit = 12;
         complexity.recommendedVerification = 'deep';
       } else if (score >= 4) {
         complexity.level = 'complex';
-        complexity.recommendedWordLimit = 8;
         complexity.recommendedVerification = 'standard';
       } else if (score >= 2) {
         complexity.level = 'moderate';
-        complexity.recommendedWordLimit = 5;
         complexity.recommendedVerification = 'standard';
       } else {
         complexity.level = 'simple';
-        complexity.recommendedWordLimit = 5;
         complexity.recommendedVerification = 'basic';
       }
-
+      complexity.recommendedWordLimit = CONFIG.codWordLimit; // Always use fixed CoD word limit
       complexity.score = score;
       return complexity;
     }
 
     function getAdaptiveEnhancedSettings(message) {
-      if (CONFIG.reasoningEnhancement !== 'adaptive') {
-        return {
-          method: CONFIG.reasoningMethod,
-          wordLimit: CONFIG.codWordLimit,
-          verificationDepth: CONFIG.reflectionSettings.verificationDepth,
-          adapted: false
-        };
-      }
-
+      // CoD word limit is now fixed by CONFIG.codWordLimit (15)
+      // This function can still determine verification depth if adaptive reasoning is re-enabled for that aspect.
       const complexity = analyzeEnhancedComplexity(message);
-      let adaptedWordLimit = complexity.recommendedWordLimit;
-      let adaptedVerification = complexity.recommendedVerification;
-      let reasoning = '';
+      let adaptedVerification = CONFIG.reflectionSettings.verificationDepth;
+      let reasoning = "Using fixed CoD-15 for reasoning steps.";
 
-      switch (complexity.level) {
-        case 'research_grade':
-          reasoning = 'Research-grade complexity detected - using extensive CoD steps with deep verification';
-          break;
-        case 'highly_complex':
-          reasoning = 'Highly complex problem detected - using expanded CoD with comprehensive verification';
-          break;
-        case 'complex':
-          reasoning = 'Complex problem detected - using moderate CoD expansion with standard verification';
-          break;
-        case 'moderate':
-          reasoning = 'Moderate complexity detected - using balanced CoD approach';
-          break;
-        case 'simple':
-          reasoning = 'Simple problem detected - using concise CoD steps';
-          break;
+      if (CONFIG.reasoningEnhancement === 'adaptive') { // If we want adaptive verification depth
+          adaptedVerification = complexity.recommendedVerification;
+          reasoning = `Adaptive verification depth: ${adaptedVerification}. CoD-15 for steps.`;
       }
-
+      
       return {
         method: CONFIG.reasoningMethod,
-        wordLimit: adaptedWordLimit,
+        wordLimit: CONFIG.codWordLimit, // Always 15
         verificationDepth: adaptedVerification,
         complexity: complexity,
-        adapted: adaptedWordLimit !== CONFIG.codWordLimit || adaptedVerification !== CONFIG.reflectionSettings.verificationDepth,
+        adapted: adaptedVerification !== CONFIG.reflectionSettings.verificationDepth, // True if verification depth changed
         reasoning: reasoning
       };
     }
@@ -1029,7 +987,8 @@ FORMAT:
           category: category,
           metadata: {
             ...metadata,
-            model: CONFIG.currentModel,
+            stage1_model: CONFIG.currentModel,
+            stage2_model: CONFIG.stage2Model,
             reasoning_method: CONFIG.reasoningMethod,
             word_limit: CONFIG.codWordLimit
           }
@@ -1037,13 +996,9 @@ FORMAT:
         
         if (!MEMORY[category]) MEMORY[category] = [];
         MEMORY[category].push(memoryItem);
-        
-        // Save to localStorage (in production: save to Vercel KV)
         localStorage.setItem('enhancedAiMemory', JSON.stringify(MEMORY));
-        
         updateEnhancedMemoryStats();
         showNotification(`Saved to ${category} memory`);
-        
         return memoryItem;
       } catch (error) {
         console.error('Error saving to enhanced memory:', error);
@@ -1065,13 +1020,10 @@ FORMAT:
     }
     
     function updateEnhancedMemoryStats() {
-      const personalCount = MEMORY.personal?.length || 0;
-      const projectCount = MEMORY.projects?.length || 0;
-      const technicalCount = MEMORY.technical?.length || 0;
-      const reflectionCount = MEMORY.reflections?.length || 0;
-      const totalCount = personalCount + projectCount + technicalCount + reflectionCount;
-      
-      // Update sidebar counter
+      const totalCount = (MEMORY.personal?.length || 0) + 
+                         (MEMORY.projects?.length || 0) + 
+                         (MEMORY.technical?.length || 0) + 
+                         (MEMORY.reflections?.length || 0);
       const memoryCountEl = document.getElementById('memoryCount');
       if (memoryCountEl) {
         memoryCountEl.textContent = `${totalCount} items`;
@@ -1093,7 +1045,8 @@ FORMAT:
         reasoning_sessions: [],
         metadata: {
           created: new Date().toISOString(),
-          model: CONFIG.currentModel,
+          stage1_model: CONFIG.currentModel,
+          stage2_model: CONFIG.stage2Model,
           reasoning_method: CONFIG.reasoningMethod
         }
       };
@@ -1111,37 +1064,22 @@ FORMAT:
         threads.forEach(thread => {
           const li = document.createElement("li");
           li.className = "px-4 py-3 rounded-xl cursor-pointer hover:bg-dark-600 transition-all duration-200 border border-dark-500/50";
-          
           if (thread.id === currentThreadId) {
             li.classList.add("bg-dark-600/50", "text-deepseek-300", "border-deepseek-500/50");
           } else {
             li.classList.add("text-gray-300", "hover:border-deepseek-500/50");
           }
-          
           li.innerHTML = `
             <div class="flex items-center gap-3">
               <div class="w-8 h-8 bg-deepseek-500/20 rounded-lg flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-deepseek-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-deepseek-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
               </div>
-              <div class="flex-1 min-w-0">
-                <p class="text-sm font-medium text-white truncate">${thread.name}</p>
-                <p class="text-xs text-gray-400">${formatTimeAgo(thread.metadata.created)}</p>
-              </div>
-            </div>
-          `;
-          
-          li.addEventListener("click", () => {
-            currentThreadId = thread.id;
-            renderCurrentThreadMessages();
-            updateThreadList();
-          });
+              <div class="flex-1 min-w-0"><p class="text-sm font-medium text-white truncate">${thread.name}</p><p class="text-xs text-gray-400">${formatTimeAgo(thread.metadata.created)}</p></div>
+            </div>`;
+          li.addEventListener("click", () => { currentThreadId = thread.id; renderCurrentThreadMessages(); updateThreadList(); });
           threadList.appendChild(li);
         });
       }
-      
-      // Update mobile thread list
       const mobileThreadList = document.getElementById("mobileThreadList");
       if (mobileThreadList) {
         mobileThreadList.innerHTML = "";
@@ -1149,456 +1087,310 @@ FORMAT:
           const li = document.createElement("li");
           li.textContent = thread.name;
           li.className = "px-3 py-2 rounded-md cursor-pointer hover:bg-dark-500 transition";
-          if (thread.id === currentThreadId) {
-            li.classList.add("bg-dark-600", "text-deepseek-300");
-          } else {
-            li.classList.add("text-gray-300");
-          }
-          li.addEventListener("click", () => {
-            currentThreadId = thread.id;
-            renderCurrentThreadMessages();
-            updateThreadList();
-            document.getElementById("mobileSidebar").classList.remove("translate-x-0");
-            document.getElementById("mobileSidebar").classList.add("-translate-x-full");
-          });
+          if (thread.id === currentThreadId) li.classList.add("bg-dark-600", "text-deepseek-300");
+          else li.classList.add("text-gray-300");
+          li.addEventListener("click", () => { currentThreadId = thread.id; renderCurrentThreadMessages(); updateThreadList(); document.getElementById("mobileSidebar").classList.add("-translate-x-full"); });
           mobileThreadList.appendChild(li);
         });
       }
-      
-      // Update thread count
       const threadCountEl = document.getElementById("threadCount");
-      if (threadCountEl) {
-        threadCountEl.textContent = threads.length;
-      }
+      if (threadCountEl) threadCountEl.textContent = threads.length;
     }
 
     function formatTimeAgo(timestamp) {
-      const now = new Date();
-      const then = new Date(timestamp);
-      const diffMs = now - then;
-      const diffMins = Math.floor(diffMs / 60000);
-      
-      if (diffMins < 1) return 'Just now';
-      if (diffMins < 60) return `${diffMins}m ago`;
-      
-      const diffHours = Math.floor(diffMins / 60);
-      if (diffHours < 24) return `${diffHours}h ago`;
-      
-      const diffDays = Math.floor(diffHours / 24);
-      return `${diffDays}d ago`;
+      const diffMins = Math.floor((new Date() - new Date(timestamp)) / 60000);
+      if (diffMins < 1) return 'Just now'; if (diffMins < 60) return `${diffMins}m ago`;
+      const diffHours = Math.floor(diffMins / 60); if (diffHours < 24) return `${diffHours}h ago`;
+      return `${Math.floor(diffHours / 24)}d ago`;
     }
 
     /***********************
      * Enhanced Message Rendering
      ***********************/
-    function formatEnhancedProblemAnalysis(content) {
+    function formatEnhancedProblemAnalysis(content) { /* Retained for potential direct use, though CoD stages are more granular */
       if (!content) return '';
-      
       let html = '<div class="problem-analysis bg-blue-900/20 border border-blue-500/30 rounded-lg p-4 mb-4">';
-      html += '<div class="text-blue-300 font-semibold mb-2 flex items-center gap-2">';
-      html += '<span>📊</span><span>Problem Analysis</span>';
-      html += '<span class="bg-blue-600/20 text-blue-300 text-xs px-2 py-1 rounded-full ml-auto">STAGE 1</span>';
-      html += '</div>';
-      html += '<div class="text-blue-100 text-sm">' + transformMessage(content) + '</div>';
-      html += '</div>';
-      
+      html += '<div class="text-blue-300 font-semibold mb-2 flex items-center gap-2"><span>📊</span><span>Problem Analysis</span><span class="bg-blue-600/20 text-blue-300 text-xs px-2 py-1 rounded-full ml-auto">STAGE 1</span></div>';
+      html += '<div class="text-blue-100 text-sm">' + transformMessage(content) + '</div></div>';
       return html;
     }
     
-    function formatEnhancedCoDStage(content, wordLimit, stageNum = 1) {
+    function formatEnhancedCoDStage(content, wordLimit, stageNum = 1, modelName = "DeepSeek V3") {
       if (!content) return '';
-      
       let html = '';
       const sections = content.split('####');
       
+      // Problem Analysis (from Stage 1 output)
+      const problemAnalysisMatch = content.match(/#### PROBLEM ANALYSIS\s*([\s\S]*?)(?=#### CHAIN OF DRAFT STEPS)/i);
+      if (problemAnalysisMatch && problemAnalysisMatch[1].trim()) {
+          html += formatEnhancedProblemAnalysis(problemAnalysisMatch[1].trim());
+      }
+
       // CoD Steps
-      if (sections.length > 0) {
-        const codSteps = sections[0].trim();
-        if (codSteps) {
-          html += '<div class="cod-steps bg-green-900/20 border border-green-500/30 rounded-lg p-4 mb-4">';
-          html += `<div class="text-green-300 font-semibold mb-3 flex items-center gap-2">
-                     <span>⚡</span>
-                     <span>Enhanced Chain of Draft (${wordLimit} words max)</span>
+      const codStepsMatch = content.match(/#### CHAIN OF DRAFT STEPS\s*([\s\S]*?)(?=#### INITIAL REFLECTION)/i);
+      if (codStepsMatch && codStepsMatch[1].trim()) {
+        const codStepsContent = codStepsMatch[1].trim();
+        html += `<div class="cod-steps bg-green-900/20 border border-green-500/30 rounded-lg p-4 mb-4">
+                   <div class="text-green-300 font-semibold mb-3 flex items-center gap-2">
+                     <span>⚡</span><span>Chain of Draft Steps (${modelName} - ${wordLimit} words max)</span>
                      <span class="bg-green-600/20 text-green-300 text-xs px-2 py-1 rounded-full ml-auto">STAGE ${stageNum}</span>
                    </div>`;
-          
-          const steps = codSteps.split('\n').filter(line => line.trim());
-          let stepCounter = 1;
-          
-          steps.forEach(step => {
-            if (step.trim().toLowerCase().startsWith('cod step') || step.trim().match(/^\d+\./)) {
-              const stepContent = step.replace(/^(cod step \d+:|^\d+\.)/i, '').trim();
-              const wordCount = countWords(stepContent);
-              const isWithinLimit = wordCount <= wordLimit;
-              
-              html += `<div class="flex items-start mb-3 cod-step">
-                         <span class="flex items-center justify-center min-w-8 h-8 mr-3 rounded-full ${isWithinLimit ? 'bg-green-700 text-green-100' : 'bg-yellow-700 text-yellow-100'} text-sm font-bold">${stepCounter++}</span>
-                         <div class="flex-1">
-                           <span class="text-green-100 font-mono text-sm">${stepContent}</span>
-                           <div class="text-xs ${isWithinLimit ? 'text-green-400' : 'text-yellow-400'} mt-1">${wordCount}/${wordLimit} words</div>
-                         </div>
-                       </div>`;
-            }
-          });
-          
-          html += '</div>';
-        }
+        const steps = codStepsContent.split('\n').filter(line => line.trim().toLowerCase().startsWith('cod step'));
+        steps.forEach((step, index) => {
+          const stepContent = step.replace(/^(cod step \d+:)/i, '').trim();
+          const wordCount = countWords(stepContent);
+          const isWithinLimit = wordCount <= wordLimit;
+          html += `<div class="flex items-start mb-3 cod-step">
+                     <span class="flex items-center justify-center min-w-8 h-8 mr-3 rounded-full ${isWithinLimit ? 'bg-green-700 text-green-100' : 'bg-yellow-700 text-yellow-100'} text-sm font-bold">${index + 1}</span>
+                     <div class="flex-1"><span class="text-green-100 font-mono text-sm">${stepContent}</span><div class="text-xs ${isWithinLimit ? 'text-green-400' : 'text-yellow-400'} mt-1">${wordCount}/${wordLimit} words</div></div>
+                   </div>`;
+        });
+        html += '</div>';
       }
       
       // Initial Reflection
-      if (sections.length > 1) {
-        const reflection = sections[1].replace(/INITIAL REFLECTION/i, '').trim();
-        if (reflection) {
-          html += '<div class="reflection-block bg-purple-900/20 border border-purple-500/30 rounded-lg p-4 mb-4">';
-          html += '<div class="text-purple-300 font-semibold mb-3 flex items-center gap-2">';
-          html += '<span>🤔</span><span>Initial Reflection</span>';
-          html += '</div>';
-          html += '<div class="text-purple-100 text-sm">' + transformMessage(reflection) + '</div>';
-          html += '</div>';
-        }
+      const initialReflectionMatch = content.match(/#### INITIAL REFLECTION\s*([\s\S]*?)(?=#### DRAFT SOLUTION)/i);
+      if (initialReflectionMatch && initialReflectionMatch[1].trim()) {
+        html += `<div class="reflection-block bg-purple-900/20 border border-purple-500/30 rounded-lg p-4 mb-4">
+                   <div class="text-purple-300 font-semibold mb-3 flex items-center gap-2"><span>🤔</span><span>Initial Reflection (${modelName})</span></div>
+                   <div class="text-purple-100 text-sm">${transformMessage(initialReflectionMatch[1].trim())}</div></div>`;
       }
       
       // Draft Solution
-      if (sections.length > 2) {
-        const solution = sections[2].replace(/DRAFT SOLUTION/i, '').trim();
-        if (solution) {
-          html += '<div class="draft-solution bg-orange-900/20 border border-orange-500/30 rounded-lg p-4">';
-          html += '<div class="text-orange-300 font-semibold mb-3 flex items-center gap-2">';
-          html += '<span>💡</span><span>Draft Solution</span>';
-          html += '</div>';
-          html += '<div class="text-orange-100 text-sm">' + transformMessage(solution) + '</div>';
-          html += '</div>';
-        }
+      const draftSolutionMatch = content.match(/#### DRAFT SOLUTION\s*([\s\S]*)/i);
+      if (draftSolutionMatch && draftSolutionMatch[1].trim()) {
+        html += `<div class="draft-solution bg-orange-900/20 border border-orange-500/30 rounded-lg p-4">
+                   <div class="text-orange-300 font-semibold mb-3 flex items-center gap-2"><span>💡</span><span>Draft Solution (${modelName})</span></div>
+                   <div class="text-orange-100">${transformMessage(draftSolutionMatch[1].trim())}</div></div>`; // Removed text-sm for potentially larger code blocks
       }
-      
       return html;
     }
     
-    function formatEnhancedVerification(content) {
+    function formatEnhancedVerification(content, modelName = "Qwen3") {
       if (!content) return '';
-      
       let html = '';
-      const sections = content.split('####');
       
-      // Stage 2 Verification
-      if (sections.length > 1) {
-        const verification = sections[1].replace(/STAGE 2 VERIFICATION/i, '').trim();
-        if (verification) {
-          html += '<div class="verification-block bg-indigo-900/20 border border-indigo-500/30 rounded-lg p-4 mb-4">';
-          html += '<div class="text-indigo-300 font-semibold mb-3 flex items-center gap-2">';
-          html += '<span>🔍</span><span>Stage 2 Verification</span>';
-          html += '<span class="bg-indigo-600/20 text-indigo-300 text-xs px-2 py-1 rounded-full ml-auto">STAGE 2</span>';
-          html += '</div>';
-          html += '<div class="text-indigo-100 text-sm">' + transformMessage(verification) + '</div>';
-          html += '</div>';
+      const verificationAnalysisMatch = content.match(/#### STAGE 2 VERIFICATION & ANALYSIS\s*([\s\S]*?)(?=#### ERROR DETECTION & CORRECTION PROPOSALS)/i);
+      if (verificationAnalysisMatch && verificationAnalysisMatch[1].trim()) {
+        const verificationContent = verificationAnalysisMatch[1].trim();
+        html += `<div class="verification-block bg-indigo-900/20 border border-indigo-500/30 rounded-lg p-4 mb-4">
+                   <div class="text-indigo-300 font-semibold mb-3 flex items-center gap-2">
+                     <span>🔍</span><span>Stage 2 Verification & Analysis (${modelName})</span>
+                     <span class="bg-indigo-600/20 text-indigo-300 text-xs px-2 py-1 rounded-full ml-auto">STAGE 2</span>
+                   </div>`;
+        // Check for CoD steps within verification
+        const codStepsRegex = /CoD Step \d+ \(Verification\):([\s\S]*?)(?=\nCoD Step|\n####|$)/gi;
+        let match;
+        let codStepsHtml = "";
+        let nonCodContent = verificationContent;
+
+        while ((match = codStepsRegex.exec(verificationContent)) !== null) {
+            const stepContent = match[1].trim();
+            const wordCount = countWords(stepContent);
+            codStepsHtml += `<div class="flex items-start mb-2 cod-step">
+                               <span class="flex items-center justify-center min-w-6 h-6 mr-2 rounded-full bg-indigo-700 text-indigo-100 text-xs font-bold">✓</span>
+                               <div class="flex-1"><span class="text-indigo-100 font-mono text-sm">${stepContent}</span><div class="text-xs text-indigo-400 mt-1">${wordCount}/15 words</div></div>
+                             </div>`;
+            nonCodContent = nonCodContent.replace(match[0], ""); // Remove CoD step from main content
         }
+        if (nonCodContent.trim()) {
+             html += `<div class="text-indigo-100 text-sm mb-3">${transformMessage(nonCodContent.trim())}</div>`;   
+        }
+        if (codStepsHtml) {
+            html += `<div class="mt-2 border-t border-indigo-700 pt-2">${codStepsHtml}</div>`;
+        }
+        html += '</div>';
+      }
+
+      const errorDetectionMatch = content.match(/#### ERROR DETECTION & CORRECTION PROPOSALS\s*([\s\S]*?)(?=#### ALTERNATIVE APPROACH ANALYSIS|#### CONFIDENCE ASSESSMENT|#### FINAL COMPREHENSIVE ANSWER)/i);
+      if (errorDetectionMatch && errorDetectionMatch[1].trim()) {
+        html += `<div class="error-detection bg-red-900/20 border border-red-500/30 rounded-lg p-4 mb-4">
+                   <div class="text-red-300 font-semibold mb-3 flex items-center gap-2"><span>🐛</span><span>Error Detection & Correction Proposals</span></div>
+                   <div class="text-red-100 text-sm">${transformMessage(errorDetectionMatch[1].trim())}</div></div>`;
       }
       
-      // Error Detection
-      if (sections.length > 2) {
-        const errorDetection = sections[2].replace(/ERROR DETECTION & CORRECTION/i, '').trim();
-        if (errorDetection) {
-          html += '<div class="error-detection bg-red-900/20 border border-red-500/30 rounded-lg p-4 mb-4">';
-          html += '<div class="text-red-300 font-semibold mb-3 flex items-center gap-2">';
-          html += '<span>🐛</span><span>Error Detection & Correction</span>';
-          html += '</div>';
-          html += '<div class="text-red-100 text-sm">' + transformMessage(errorDetection) + '</div>';
-          html += '</div>';
-        }
+      const alternativeApproachMatch = content.match(/#### ALTERNATIVE APPROACH ANALYSIS\s*([\s\S]*?)(?=#### CONFIDENCE ASSESSMENT|#### FINAL COMPREHENSIVE ANSWER)/i);
+      if (alternativeApproachMatch && alternativeApproachMatch[1].trim()) {
+        html += `<div class="alternative-analysis bg-teal-900/20 border border-teal-500/30 rounded-lg p-4 mb-4">
+                   <div class="text-teal-300 font-semibold mb-3 flex items-center gap-2"><span>🔄</span><span>Alternative Approach Analysis</span></div>
+                   <div class="text-teal-100 text-sm">${transformMessage(alternativeApproachMatch[1].trim())}</div></div>`;
+      }
+
+      const confidenceAssessmentMatch = content.match(/#### CONFIDENCE ASSESSMENT\s*([\s\S]*?)(?=#### FINAL COMPREHENSIVE ANSWER)/i);
+      if (confidenceAssessmentMatch && confidenceAssessmentMatch[1].trim()) {
+        html += `<div class="confidence-assessment bg-yellow-900/20 border border-yellow-500/30 rounded-lg p-4 mb-4">
+                   <div class="text-yellow-300 font-semibold mb-3 flex items-center gap-2"><span>📊</span><span>Confidence Assessment (Stage 2)</span></div>
+                   <div class="text-yellow-100 text-sm">${transformMessage(confidenceAssessmentMatch[1].trim())}</div></div>`;
       }
       
-      // Alternative Approach Analysis
-      if (sections.length > 3) {
-        const alternative = sections[3].replace(/ALTERNATIVE APPROACH ANALYSIS/i, '').trim();
-        if (alternative) {
-          html += '<div class="alternative-analysis bg-teal-900/20 border border-teal-500/30 rounded-lg p-4 mb-4">';
-          html += '<div class="text-teal-300 font-semibold mb-3 flex items-center gap-2">';
-          html += '<span>🔄</span><span>Alternative Approach Analysis</span>';
-          html += '</div>';
-          html += '<div class="text-teal-100 text-sm">' + transformMessage(alternative) + '</div>';
-          html += '</div>';
-        }
+      const finalAnswerMatch = content.match(/#### FINAL COMPREHENSIVE ANSWER\s*([\s\S]*?)(?=#### REFLECTION SUMMARY)/i);
+      if (finalAnswerMatch && finalAnswerMatch[1].trim()) {
+        html += `<div class="final-answer bg-emerald-900/20 border border-emerald-500/30 rounded-lg p-4 mb-4">
+                   <div class="text-emerald-300 font-semibold mb-3 flex items-center gap-2">
+                     <span>✅</span><span>Final Comprehensive Answer (${modelName})</span>
+                     <span class="bg-emerald-600/20 text-emerald-300 text-xs px-2 py-1 rounded-full ml-auto">VERIFIED & REFINED</span>
+                   </div>
+                   <div class="text-emerald-100">${transformMessage(finalAnswerMatch[1].trim())}</div></div>`;
       }
-      
-      // Confidence Assessment
-      if (sections.length > 4) {
-        const confidence = sections[4].replace(/CONFIDENCE ASSESSMENT/i, '').trim();
-        if (confidence) {
-          html += '<div class="confidence-assessment bg-yellow-900/20 border border-yellow-500/30 rounded-lg p-4 mb-4">';
-          html += '<div class="text-yellow-300 font-semibold mb-3 flex items-center gap-2">';
-          html += '<span>📊</span><span>Confidence Assessment</span>';
-          html += '</div>';
-          html += '<div class="text-yellow-100 text-sm">' + transformMessage(confidence) + '</div>';
-          html += '</div>';
-        }
+
+      const reflectionSummaryMatch = content.match(/#### REFLECTION SUMMARY \(Stage 2\)\s*([\s\S]*)/i);
+       if (!reflectionSummaryMatch) reflectionSummaryMatch = content.match(/#### REFLECTION SUMMARY\s*([\s\S]*)/i); // Fallback for general reflection summary
+      if (reflectionSummaryMatch && reflectionSummaryMatch[1].trim()) {
+        html += `<div class="reflection-summary bg-gray-900/20 border border-gray-500/30 rounded-lg p-4">
+                   <div class="text-gray-300 font-semibold mb-3 flex items-center gap-2"><span>📝</span><span>Reflection Summary (Stage 2)</span></div>
+                   <div class="text-gray-100 text-sm">${transformMessage(reflectionSummaryMatch[1].trim())}</div></div>`;
       }
-      
-      // Final Comprehensive Answer
-      if (sections.length > 5) {
-        const answer = sections[5].replace(/FINAL COMPREHENSIVE ANSWER/i, '').trim();
-        if (answer) {
-          html += '<div class="final-answer bg-emerald-900/20 border border-emerald-500/30 rounded-lg p-4 mb-4">';
-          html += '<div class="text-emerald-300 font-semibold mb-3 flex items-center gap-2">';
-          html += '<span>✅</span><span>Final Comprehensive Answer</span>';
-          html += '<span class="bg-emerald-600/20 text-emerald-300 text-xs px-2 py-1 rounded-full ml-auto">VERIFIED</span>';
-          html += '</div>';
-          html += '<div class="text-emerald-100">' + transformMessage(answer) + '</div>';
-          html += '</div>';
-        }
-      }
-      
-      // Reflection Summary
-      if (sections.length > 6) {
-        const reflectionSummary = sections[6].replace(/REFLECTION SUMMARY/i, '').trim();
-        if (reflectionSummary) {
-          html += '<div class="reflection-summary bg-gray-900/20 border border-gray-500/30 rounded-lg p-4">';
-          html += '<div class="text-gray-300 font-semibold mb-3 flex items-center gap-2">';
-          html += '<span>📝</span><span>Reflection Summary</span>';
-          html += '</div>';
-          html += '<div class="text-gray-100 text-sm">' + transformMessage(reflectionSummary) + '</div>';
-          html += '</div>';
-        }
-      }
-      
       return html;
     }
+
 
     /***********************
      * Enhanced API Communication
      ***********************/
     async function sendEnhancedCoDMessage(message) {
-      // Get adaptive settings if enabled
-      const adaptiveSettings = getAdaptiveEnhancedSettings(message);
+      const adaptiveSettings = getAdaptiveEnhancedSettings(message); // wordLimit is fixed to 15
       
-      addMessageToCurrentThread(
-        message, 
-        "user", 
-        false, 
+      addMessageToCurrentThread(message, "user", false, 
         attachedFiles.map(f => ({name: f.name, type: f.type, size: f.size})),
         attachedImages.map(img => ({name: img.name, type: img.type, size: img.size}))
       );
       
-      const imagesToSend = [...attachedImages];
-      attachedFiles = [];
-      attachedImages = [];
-      clearAttachedFiles();
-      
+      const imagesToSend = [...attachedImages]; attachedFiles = []; attachedImages = []; clearAttachedFiles();
       const thread = threads.find(t => t.id === currentThreadId);
       const startTime = performance.now();
-      
       showProgress(true, 0);
       
-      // Show adaptive notification if reasoning was adapted
-      if (adaptiveSettings.adapted && adaptiveSettings.reasoning) {
+      if (adaptiveSettings.adapted && adaptiveSettings.reasoning && CONFIG.reasoningEnhancement === 'adaptive') { // Only show if adaptive verification is on
         showNotification(adaptiveSettings.reasoning, 4000);
+      } else {
+        showNotification(`Using CoD-15 for reasoning steps.`, 3000);
       }
       
       try {
-        // STAGE 1: Analysis + Initial CoD
-        addMessageToCurrentThread("🔍 Stage 1: Analyzing problem and applying Chain of Draft methodology...", "bot", true);
+        // STAGE 1: Analysis + Initial CoD (DeepSeek V3)
+        addMessageToCurrentThread("🔍 Stage 1 (DeepSeek V3): Analyzing problem and applying CoD-15...", "bot", true);
         showProgress(true, 25);
-        
         let placeholderIndex = thread.messages.length - 1;
         
-        // Build Stage 1 messages
         let stage1Messages = [
-          { 
-            role: "system", 
-            content: ENHANCED_PROMPTS.stage1_analysis_cod(adaptiveSettings.wordLimit)
-          },
-          { 
-            role: "user", 
-            content: `Please analyze and solve this problem using enhanced Chain of Draft methodology:\n\n${message}` 
-          }
+          { role: "system", content: ENHANCED_PROMPTS.stage1_analysis_cod(CONFIG.codWordLimit) },
+          { role: "user", content: `Please analyze and solve this problem using enhanced Chain of Draft methodology (15 words per step):\n\n${message}` }
         ];
-        
-        // Add images if available (only for stage 1)
-        if (CONFIG.isVisionModel && imagesToSend.length > 0) {
+        if (CONFIG.isVisionModel && imagesToSend.length > 0) { // Vision model check
           stage1Messages = await buildMessagesWithImages(stage1Messages, imagesToSend);
         }
         
-        const stage1Result = await callDeepSeekAPI(stage1Messages);
+        const stage1Result = await callDeepSeekAPI(stage1Messages, CONFIG.currentModel);
         const stage1EndTime = performance.now();
         
         thread.messages[placeholderIndex] = {
-          content: stage1Result.content,
-          sender: "bot",
-          isPlaceholder: false,
-          timestamp: new Date(),
-          wordCount: countWords(stage1Result.content),
-          stageType: 'enhanced_cod_stage1',
-          stageInfo: "Stage 1: Analysis + Chain of Draft",
-          reasoning: adaptiveSettings.adapted ? adaptiveSettings.reasoning : null,
-          wordLimit: adaptiveSettings.wordLimit,
+          content: stage1Result.content, sender: "bot", isPlaceholder: false, timestamp: new Date(),
+          wordCount: countWords(stage1Result.content), stageType: 'enhanced_cod_stage1',
+          stageInfo: "Stage 1: Analysis + CoD Draft (DeepSeek V3)",
+          reasoning: adaptiveSettings.reasoning, wordLimit: CONFIG.codWordLimit,
           durationSeconds: ((stage1EndTime - startTime) / 1000).toFixed(2),
-          totalTokens: stage1Result.usage?.total_tokens
+          totalTokens: stage1Result.usage?.total_tokens, modelName: "DeepSeek V3"
         };
-        
         renderCurrentThreadMessages();
         showProgress(true, 50);
+        await new Promise(resolve => setTimeout(resolve, 500)); // Brief pause
         
-        // Brief pause between stages
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        
-        // STAGE 2: Deep Verification + Final Answer
-        addMessageToCurrentThread("🔬 Stage 2: Deep verification and comprehensive analysis...", "bot", true);
+        // STAGE 2: Deep Verification + Final Answer (Qwen3)
+        addMessageToCurrentThread("🔬 Stage 2 (Qwen3): Deep verification (CoD-15) and comprehensive analysis...", "bot", true);
         showProgress(true, 75);
-        
         placeholderIndex = thread.messages.length - 1;
         
-        // Build Stage 2 messages with Stage 1 context
         const stage2Messages = [
-          { 
-            role: "system", 
-            content: ENHANCED_PROMPTS.stage2_verification()
-          },
-          { 
-            role: "user", 
-            content: `Original Problem: ${message}\n\nSTAGE 1 ANALYSIS AND COD RESULTS:\n${stage1Result.content}\n\nPlease perform Stage 2 verification and provide the final comprehensive answer.` 
-          }
+          { role: "system", content: ENHANCED_PROMPTS.stage2_verification() },
+          { role: "user", content: `Original Problem: ${message}\n\nSTAGE 1 OUTPUT (Analysis, CoD Steps, Reflection, Draft Solution from DeepSeek V3):\n${stage1Result.content}\n\nPlease perform Stage 2 verification using CoD-15 for your reasoning, and provide the final comprehensive answer.` }
         ];
         
-        const stage2Result = await callDeepSeekAPI(stage2Messages);
+        const stage2Result = await callDeepSeekAPI(stage2Messages, CONFIG.stage2Model);
         const endTime = performance.now();
         
         thread.messages[placeholderIndex] = {
-          content: stage2Result.content,
-          sender: "bot",
-          isPlaceholder: false,
-          timestamp: new Date(),
-          wordCount: countWords(stage2Result.content),
-          stageType: 'enhanced_verification',
-          stageInfo: "Stage 2: Verification + Final Answer",
+          content: stage2Result.content, sender: "bot", isPlaceholder: false, timestamp: new Date(),
+          wordCount: countWords(stage2Result.content), stageType: 'enhanced_verification',
+          stageInfo: "Stage 2: Verification + Final Answer (Qwen3)",
           durationSeconds: ((endTime - stage1EndTime) / 1000).toFixed(2),
           totalTokens: stage2Result.usage?.total_tokens,
-          totalProcessingTime: ((endTime - startTime) / 1000).toFixed(2)
+          totalProcessingTime: ((endTime - startTime) / 1000).toFixed(2), modelName: "Qwen3"
         };
-        
         renderCurrentThreadMessages();
         showProgress(true, 100);
         
-        // Save conversation to memory
         await analyzeAndSaveEnhancedMemory(message, stage1Result.content, stage2Result.content, adaptiveSettings);
-        
-        setTimeout(() => {
-          showProgress(false);
-        }, 1000);
-        
-        showNotification(`Enhanced CoD completed with ${adaptiveSettings.wordLimit} words/step!`);
+        setTimeout(() => { showProgress(false); }, 1000);
+        showNotification(`Multi-stage CoD-15 completed!`);
         
       } catch (error) {
-        showProgress(false);
-        console.error("Enhanced CoD error:", error);
-        const placeholderIndex = thread.messages.length - 1;
-        if (placeholderIndex >= 0) {
-          thread.messages[placeholderIndex] = {
-            content: `Error in enhanced CoD processing: ${error.message}`,
-            sender: "bot",
-            isPlaceholder: false,
-            timestamp: new Date(),
-            wordCount: 0
-          };
-          renderCurrentThreadMessages();
+        showProgress(false); console.error("Enhanced CoD error:", error);
+        const errorPlaceholderIndex = thread.messages.length -1; // get current placeholder
+        if (errorPlaceholderIndex >=0 && thread.messages[errorPlaceholderIndex]?.isPlaceholder) {
+             thread.messages[errorPlaceholderIndex] = {
+                content: `Error in multi-stage CoD processing: ${error.message}`, sender: "bot",
+                isPlaceholder: false, timestamp: new Date(), wordCount: 0
+            };
+        } else { // if no placeholder, add new error message
+            addMessageToCurrentThread(`Error in multi-stage CoD processing: ${error.message}`, "bot", false);
         }
+        renderCurrentThreadMessages();
       }
     }
 
-    async function callDeepSeekAPI(messages) {
+    async function callDeepSeekAPI(messages, modelOverride = null) { // Renamed for clarity, accepts model override
       const payload = {
-        model: CONFIG.currentModel,
+        model: modelOverride || CONFIG.currentModel,
         messages: messages,
-        temperature: CONFIG.temperature,
-        top_p: CONFIG.topP,
-        top_k: CONFIG.topK,
+        temperature: CONFIG.temperature, top_p: CONFIG.topP, top_k: CONFIG.topK,
         max_tokens: CONFIG.maxTokens,
-        stream: false // Two-stage processing uses non-streaming for control
+        stream: false // CoD stages are processed non-streamingly for control
       };
       
       const response = await fetch('/api/chat', {
-        method: "POST",
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-        },
+        method: "POST", headers: {"Accept": "application/json", "Content-Type": "application/json"},
         body: JSON.stringify(payload)
       });
       
       if (!response.ok) {
-        const errorText = await response.text();
-        let errorData;
-        try {
-          errorData = JSON.parse(errorText);
-        } catch (e) {
-          errorData = { message: response.statusText || "Unknown error" };
-        }
-        throw new Error(`DeepSeek API Error: ${response.status} - ${errorData.fault?.faultstring || errorData.message || 'Unknown error'}`);
+        const errorText = await response.text(); let errorData;
+        try { errorData = JSON.parse(errorText); } catch (e) { errorData = { message: response.statusText || "Unknown error" }; }
+        throw new Error(`Fireworks API Error (${payload.model}): ${response.status} - ${errorData.fault?.faultstring || errorData.message || 'Unknown error'}`);
       }
-      
       const data = await response.json();
-      
-      if (!data.choices || !data.choices[0] || !data.choices[0].message) {
-        throw new Error("Invalid DeepSeek API response format");
-      }
-      
-      return {
-        content: data.choices[0].message.content || "",
-        usage: data.usage
-      };
+      if (!data.choices || !data.choices[0] || !data.choices[0].message) throw new Error("Invalid API response format");
+      return { content: data.choices[0].message.content || "", usage: data.usage };
     }
 
     async function analyzeAndSaveEnhancedMemory(message, stage1Result, stage2Result, settings) {
       if (!CONFIG.memoryCategories) return;
-      
       try {
-        const memoryContext = `Enhanced CoD Session - ${settings.wordLimit} words/step`;
-        
-        // Analyze message for different types of information
-        const researchPatterns = /\b(research|study|methodology|analysis|hypothesis|theory)\b/i;
-        const technicalPatterns = /\b(algorithm|optimization|system|performance|architecture)\b/i;
-        const reflectionPatterns = /\b(reflection|verification|validation|assessment|evaluation)\b/i;
-        
-        if (CONFIG.memoryCategories.projectDetails && researchPatterns.test(message)) {
-          await saveToEnhancedMemory('projects', message, memoryContext, {
-            complexity: settings.complexity?.level,
-            word_limit: settings.wordLimit
-          });
+        const memoryContext = `Multi-Stage CoD Session - ${CONFIG.codWordLimit} words/step`;
+        const commonPatterns = /\b(research|study|methodology|analysis|hypothesis|theory|algorithm|optimization|system|performance|architecture|reflection|verification|validation|assessment|evaluation)\b/i;
+
+        if (CONFIG.memoryCategories.projectDetails && commonPatterns.test(message)) {
+          await saveToEnhancedMemory('projects', message, memoryContext, { complexity: settings.complexity?.level, word_limit: CONFIG.codWordLimit });
         }
-        
-        if (CONFIG.memoryCategories.technicalKnowledge && technicalPatterns.test(message)) {
-          await saveToEnhancedMemory('technical', {
-            question: message,
-            stage1: stage1Result.substring(0, 500),
-            approach: settings.adapted ? 'adaptive' : 'fixed'
-          }, memoryContext);
+        if (CONFIG.memoryCategories.technicalKnowledge && commonPatterns.test(message)) {
+          await saveToEnhancedMemory('technical', { question: message, stage1_summary: stage1Result.substring(0, 200) + "...", stage2_summary: stage2Result.substring(0, 200) + "..." }, memoryContext);
         }
-        
         if (CONFIG.memoryCategories.reflectionHistory) {
-          await saveToEnhancedMemory('reflections', {
-            original_question: message,
-            verification_approach: settings.verificationDepth,
-            final_insights: stage2Result.substring(stage2Result.lastIndexOf('####') + 4, stage2Result.lastIndexOf('####') + 200)
-          }, memoryContext);
+          await saveToEnhancedMemory('reflections', { original_question: message, verification_approach: settings.verificationDepth, final_insights_summary: stage2Result.substring(stage2Result.lastIndexOf('#### FINAL COMPREHENSIVE ANSWER'), stage2Result.lastIndexOf('#### FINAL COMPREHENSIVE ANSWER') + 300) + "..." }, memoryContext);
         }
-        
-      } catch (error) {
-        console.error('Error analyzing and saving enhanced memory:', error);
-      }
+      } catch (error) { console.error('Error analyzing and saving enhanced memory:', error); }
     }
 
     /***********************
      * Message Rendering and UI
      ***********************/
     function renderCurrentThreadMessages() {
-      const chatMessagesDiv = document.getElementById("chatMessages");
-      if (!chatMessagesDiv) return;
-      
+      const chatMessagesDiv = document.getElementById("chatMessages"); if (!chatMessagesDiv) return;
       chatMessagesDiv.innerHTML = "";
       const thread = threads.find(t => t.id === currentThreadId);
       
       if (thread) {
         thread.messages.forEach(msg => {
           const messageDiv = document.createElement("div");
-          
           if (msg.sender === "user") {
             messageDiv.className = "flex justify-end";
             const msgContent = document.createElement("div");
@@ -1615,73 +1407,36 @@ FORMAT:
             if (msg.isPlaceholder) {
               msgContent.classList.add("opacity-70");
               msgContent.innerHTML = `<div class="flex items-center gap-2"><svg class="animate-spin h-4 w-4 text-deepseek-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>${msg.content}</div>`;
-            } else if (msg.isStreaming) {
-              msgContent.classList.add("streaming");
-              msgContent.innerHTML = transformMessage(msg.content); 
-              msgContent.innerHTML += `<div class="text-deepseek-400 text-xs mt-2 streaming-indicator">Generating</div>`;
             } else {
-              // Handle different enhanced CoD stage types
               if (msg.stageType === 'enhanced_cod_stage1') {
-                msgContent.innerHTML = formatEnhancedCoDStage(msg.content, msg.wordLimit || CONFIG.codWordLimit, 1);
+                msgContent.innerHTML = formatEnhancedCoDStage(msg.content, msg.wordLimit || CONFIG.codWordLimit, 1, msg.modelName || "DeepSeek V3");
               } else if (msg.stageType === 'enhanced_verification') {
-                msgContent.innerHTML = formatEnhancedVerification(msg.content);
+                msgContent.innerHTML = formatEnhancedVerification(msg.content, msg.modelName || "Qwen3");
               } else {
                 msgContent.innerHTML = transformMessage(msg.content);
               }
               
-              // Add adaptive reasoning notification
-              if (msg.reasoning) {
+              if (msg.reasoning && CONFIG.reasoningEnhancement === 'adaptive') { // Only show if adaptive verification is on
                 const adaptiveNotification = document.createElement("div");
                 adaptiveNotification.className = "mt-2 px-3 py-2 bg-gradient-to-r from-purple-900/30 to-blue-900/30 border border-purple-500/30 rounded-lg text-xs reflection-indicator";
-                adaptiveNotification.innerHTML = `<span class="text-purple-300">🧠 Adaptive:</span> <span class="text-purple-100">${msg.reasoning}</span>`;
+                adaptiveNotification.innerHTML = `<span class="text-purple-300">🧠 Adaptive Note:</span> <span class="text-purple-100">${msg.reasoning}</span>`;
                 msgContent.appendChild(adaptiveNotification);
               }
-              
-              // Add stage indicator
               if (msg.stageInfo) {
                 const stageIndicator = document.createElement("div");
                 stageIndicator.className = "mt-2 px-2 py-1 bg-deepseek-900/20 border border-deepseek-800/30 rounded text-xs text-deepseek-400";
                 stageIndicator.innerHTML = `<span class="stage-indicator">📍</span> ${msg.stageInfo}`;
                 msgContent.appendChild(stageIndicator);
               }
-            }
-            
-            if (!msg.isPlaceholder && !msg.isStreaming) {
+
               const statsDiv = document.createElement("div");
               statsDiv.className = "mt-3 pt-2 border-t border-dark-600/50 text-xs text-gray-400 flex flex-wrap gap-x-4 gap-y-1 items-center";
-              
               let statsAdded = false;
-              if (msg.wordCount !== undefined) {
-                const wordStat = document.createElement('span');
-                wordStat.innerHTML = `Words: <span class="text-gray-300">${msg.wordCount}</span>`;
-                statsDiv.appendChild(wordStat);
-                statsAdded = true;
-              }
-
-              if (msg.totalTokens !== undefined) {
-                const tokenStat = document.createElement('span');
-                tokenStat.innerHTML = `Tokens: <span class="text-teal-300 font-medium">${msg.totalTokens}</span>`;
-                statsDiv.appendChild(tokenStat);
-                statsAdded = true;
-              }
-
-              if (msg.durationSeconds !== undefined) {
-                const timeStat = document.createElement('span');
-                timeStat.innerHTML = `Time: <span class="text-amber-400 font-medium">${msg.durationSeconds}s</span>`;
-                statsDiv.appendChild(timeStat);
-                statsAdded = true;
-              }
-
-              if (msg.totalProcessingTime !== undefined) {
-                const totalTimeStat = document.createElement('span');
-                totalTimeStat.innerHTML = `Total: <span class="text-deepseek-400 font-medium">${msg.totalProcessingTime}s</span>`;
-                statsDiv.appendChild(totalTimeStat);
-                statsAdded = true;
-              }
-
-              if (statsAdded) {
-                msgContent.appendChild(statsDiv);
-              }
+              if (msg.wordCount !== undefined) { statsDiv.innerHTML += `Words: <span class="text-gray-300">${msg.wordCount}</span>`; statsAdded = true; }
+              if (msg.totalTokens !== undefined) { statsDiv.innerHTML += ` Tokens: <span class="text-teal-300 font-medium">${msg.totalTokens}</span>`; statsAdded = true; }
+              if (msg.durationSeconds !== undefined) { statsDiv.innerHTML += ` Time: <span class="text-amber-400 font-medium">${msg.durationSeconds}s</span>`; statsAdded = true; }
+              if (msg.totalProcessingTime !== undefined) { statsDiv.innerHTML += ` Total Time: <span class="text-deepseek-400 font-medium">${msg.totalProcessingTime}s</span>`; statsAdded = true; }
+              if (statsAdded) msgContent.appendChild(statsDiv);
             }
             messageDiv.appendChild(msgContent);
           }
@@ -1689,10 +1444,7 @@ FORMAT:
         });
         chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
       }
-      
-      if (typeof hljs !== 'undefined') { 
-        document.querySelectorAll('pre code').forEach((block) => hljs.highlightElement(block)); 
-      }
+      if (typeof hljs !== 'undefined') { document.querySelectorAll('pre code').forEach((block) => hljs.highlightElement(block)); }
       addCodeCopyButtons();
     }
 
@@ -1700,51 +1452,31 @@ FORMAT:
      * Main Send Message Function
      ***********************/
     async function sendMessage(message) {
-      if (CONFIG.reasoningMethod === "standard") {
-        return await sendStandardMessage(message);
+      if (CONFIG.reasoningMethod === "standard") { // Standard (single model, direct response)
+        addMessageToCurrentThread(message, "user", false, [], []);
+        addMessageToCurrentThread("Thinking...", "bot", true);
+        const thread = threads.find(t => t.id === currentThreadId);
+        const placeholderIndex = thread.messages.length - 1;
+        const startTime = performance.now();
+        try {
+          const response = await callDeepSeekAPI([{ role: "user", content: message }], CONFIG.currentModel); // Use Stage 1 model for standard
+          const endTime = performance.now();
+          thread.messages[placeholderIndex] = {
+            content: response.content, sender: "bot", isPlaceholder: false, timestamp: new Date(),
+            wordCount: countWords(response.content), durationSeconds: ((endTime - startTime) / 1000).toFixed(2),
+            totalTokens: response.usage?.total_tokens, modelName: CONFIG.currentModel.split('/').pop()
+          };
+          renderCurrentThreadMessages();
+        } catch (error) {
+          console.error("Error sending standard message:", error);
+          thread.messages[placeholderIndex] = { content: `Error: ${error.message}`, sender: "bot", isPlaceholder: false, timestamp: new Date(), wordCount: 0 };
+          renderCurrentThreadMessages();
+        }
       } else if (CONFIG.reasoningMethod === "enhanced_cod") {
         return await sendEnhancedCoDMessage(message);
       }
     }
-
-    async function sendStandardMessage(message) {
-      addMessageToCurrentThread(message, "user", false, [], []);
-      addMessageToCurrentThread("Thinking...", "bot", true);
-      
-      const thread = threads.find(t => t.id === currentThreadId);
-      const placeholderIndex = thread.messages.length - 1;
-      const startTime = performance.now();
-      
-      try {
-        const messages = [{ role: "user", content: message }];
-        const response = await callDeepSeekAPI(messages);
-        const endTime = performance.now();
-        
-        thread.messages[placeholderIndex] = {
-          content: response.content,
-          sender: "bot",
-          isPlaceholder: false,
-          timestamp: new Date(),
-          wordCount: countWords(response.content),
-          durationSeconds: ((endTime - startTime) / 1000).toFixed(2),
-          totalTokens: response.usage?.total_tokens
-        };
-        
-        renderCurrentThreadMessages();
-        
-      } catch (error) {
-        console.error("Error sending standard message:", error);
-        thread.messages[placeholderIndex] = {
-          content: `Error: ${error.message}`,
-          sender: "bot",
-          isPlaceholder: false,
-          timestamp: new Date(),
-          wordCount: 0
-        };
-        renderCurrentThreadMessages();
-      }
-    }
-
+    
     /***********************
      * Utility Functions
      ***********************/
@@ -1757,22 +1489,12 @@ FORMAT:
     
     function transformMessage(content) {
       if (!content) return '';
-      
       if (typeof marked !== 'undefined') {
-        try {
-          return marked.parse(content);
-        } catch (e) {
-          console.warn('Marked.js error:', e);
-          return content.replace(/\n/g, '<br>');
-        }
+        try { return marked.parse(content); } catch (e) { console.warn('Marked.js error:', e); return content.replace(/\n/g, '<br>'); }
       } else {
         return content.replace(/```([\s\S]*?)```/g, (match, codeContent) => {
-          let language = ''; 
-          const lines = codeContent.split('\n');
-          if (lines.length > 0 && !lines[0].includes(' ')) { 
-            language = lines[0].trim(); 
-            lines.shift(); 
-          }
+          let language = ''; const lines = codeContent.split('\n');
+          if (lines.length > 0 && !lines[0].includes(' ')) { language = lines[0].trim(); lines.shift(); }
           return `<pre><code class="${language}">${lines.join('\n')}</code></pre>`;
         }).replace(/\n/g, '<br>');
       }
@@ -1781,525 +1503,244 @@ FORMAT:
     function addCodeCopyButtons() {
       document.querySelectorAll('pre code').forEach(code => {
         if (code.parentElement.classList.contains('relative')) return;
-        
-        const pre = code.parentElement; 
-        const container = document.createElement('div');
-        container.className = 'relative mb-4 rounded-lg overflow-hidden'; 
-        pre.parentNode.insertBefore(container, pre); 
-        container.appendChild(pre);
-        
+        const pre = code.parentElement; const container = document.createElement('div');
+        container.className = 'relative mb-4 rounded-lg overflow-hidden'; pre.parentNode.insertBefore(container, pre); container.appendChild(pre);
         const language = code.className.match(/language-([^\s]+)/)?.[1];
         if (language && language !== 'plaintext') { 
-          const langBadge = document.createElement('div'); 
-          langBadge.className = 'absolute top-2 left-2 bg-dark-900/80 text-xs py-1 px-2 rounded text-gray-400'; 
-          langBadge.textContent = language; 
-          container.appendChild(langBadge); 
+          const langBadge = document.createElement('div'); langBadge.className = 'absolute top-2 left-2 bg-dark-900/80 text-xs py-1 px-2 rounded text-gray-400'; langBadge.textContent = language; container.appendChild(langBadge); 
         }
-        
         pre.className = 'bg-dark-900 rounded-lg p-4 overflow-x-auto text-sm';
-        
-        const copyBtn = document.createElement('button'); 
-        copyBtn.className = 'absolute top-2 right-2 bg-dark-900/80 text-gray-400 hover:text-white text-xs py-1 px-2 rounded transition-colors'; 
-        copyBtn.textContent = 'Copy';
-        
+        const copyBtn = document.createElement('button'); copyBtn.className = 'absolute top-2 right-2 bg-dark-900/80 text-gray-400 hover:text-white text-xs py-1 px-2 rounded transition-colors'; copyBtn.textContent = 'Copy';
         copyBtn.addEventListener('click', () => { 
           navigator.clipboard.writeText(code.textContent || '').then(() => { 
-            copyBtn.textContent = 'Copied!'; 
-            copyBtn.classList.add('text-green-400'); 
-            setTimeout(() => { 
-              copyBtn.textContent = 'Copy'; 
-              copyBtn.classList.remove('text-green-400'); 
-            }, 2000); 
-          }).catch(() => { 
-            copyBtn.textContent = 'Failed'; 
-            copyBtn.classList.add('text-red-400'); 
-            setTimeout(() => { 
-              copyBtn.textContent = 'Copy'; 
-              copyBtn.classList.remove('text-red-400'); 
-            }, 2000); 
-          }); 
+            copyBtn.textContent = 'Copied!'; copyBtn.classList.add('text-green-400'); setTimeout(() => { copyBtn.textContent = 'Copy'; copyBtn.classList.remove('text-green-400'); }, 2000); 
+          }).catch(() => { copyBtn.textContent = 'Failed'; copyBtn.classList.add('text-red-400'); setTimeout(() => { copyBtn.textContent = 'Copy'; copyBtn.classList.remove('text-red-400'); }, 2000); }); 
         });
-        
         container.appendChild(copyBtn);
       });
     }
 
     function showNotification(message, duration = 3000) {
-      const notification = document.getElementById("statusNotification");
-      notification.textContent = message;
-      notification.classList.add("opacity-100");
-      setTimeout(() => { 
-        notification.classList.remove("opacity-100"); 
-      }, duration);
+      const n = document.getElementById("statusNotification"); n.textContent = message; n.classList.add("opacity-100"); setTimeout(() => { n.classList.remove("opacity-100"); }, duration);
     }
-    
     function showProgress(show = true, percentage = 0) {
-      const container = document.getElementById("progressContainer");
-      const bar = document.getElementById("progressBar");
-      
-      if (show) {
-        container.classList.remove("hidden");
-        bar.style.width = `${percentage}%`;
-      } else {
-        container.classList.add("hidden");
-        bar.style.width = "0%";
-      }
+      const c = document.getElementById("progressContainer"), b = document.getElementById("progressBar");
+      if (show) { c.classList.remove("hidden"); b.style.width = `${percentage}%`; } else { c.classList.add("hidden"); b.style.width = "0%"; }
     }
-
-    function addMessageToCurrentThread(content, sender, isPlaceholder = false, files = [], images = [], stageType = null, stageInfo = null, reasoning = null, wordLimit = null) {
+    function addMessageToCurrentThread(content, sender, isPlaceholder = false, files = [], images = []) {
       const thread = threads.find(t => t.id === currentThreadId);
       if (thread) {
-        const wordCount = sender === "bot" && !isPlaceholder ? (countWords(content) || 0) : (countWords(content) || 0);
-        
         thread.messages.push({
-          content, 
-          sender, 
-          isPlaceholder, 
-          timestamp: new Date(),
-          wordCount,
-          stageType,
-          stageInfo,
-          reasoning,
-          wordLimit,
-          files: files && files.length > 0 ? files.map(f => ({ name: f.name, type: f.type, size: f.size })) : undefined,
-          images: images && images.length > 0 ? images.map(img => ({ name: img.name, type: img.type, size: img.size })) : undefined,
+          content, sender, isPlaceholder, timestamp: new Date(),
+          wordCount: countWords(content) || 0,
+          files: files?.map(f => ({ name: f.name, type: f.type, size: f.size })),
+          images: images?.map(img => ({ name: img.name, type: img.type, size: img.size })),
         });
         renderCurrentThreadMessages();
       }
     }
-
-    function addFilesToMessage(msgContent, files) {
-      const filesDiv = document.createElement('div'); 
-      filesDiv.className = 'mt-2 text-xs text-gray-300 italic';
-      filesDiv.textContent = `(${files.length} file(s) attached)`; 
-      msgContent.appendChild(filesDiv);
-    }
-    
-    function addImagesToMessage(msgContent, images) {
-      const imagesDiv = document.createElement('div'); 
-      imagesDiv.className = 'mt-2 text-xs text-purple-300 italic flex items-center gap-1';
-      imagesDiv.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>(${images.length} image(s) sent)`; 
-      msgContent.appendChild(imagesDiv);
-    }
-
+    function addFilesToMessage(msgContent, files) { const d=document.createElement('div'); d.className='mt-2 text-xs text-gray-300 italic'; d.textContent=`(${files.length} file(s) attached)`; msgContent.appendChild(d); }
+    function addImagesToMessage(msgContent, images) { const d=document.createElement('div'); d.className='mt-2 text-xs text-purple-300 italic flex items-center gap-1'; d.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>(${images.length} image(s) sent)`; msgContent.appendChild(d); }
     function clearAttachedFiles() {
-      const attachedFilesContainer = document.getElementById('attachedFiles');
-      const imagePreviewArea = document.getElementById('imagePreviewArea');
-      const imagePreviewContainer = document.getElementById('imagePreviewContainer');
-      
-      if (attachedFilesContainer) {
-        attachedFilesContainer.innerHTML = '';
-        attachedFilesContainer.classList.add('hidden');
-      }
-      
-      if (imagePreviewArea) {
-        imagePreviewArea.classList.add('hidden');
-      }
-      
-      if (imagePreviewContainer) {
-        imagePreviewContainer.innerHTML = '';
-      }
+      const afc = document.getElementById('attachedFiles'), ipa = document.getElementById('imagePreviewArea'), ipc = document.getElementById('imagePreviewContainer');
+      if (afc) { afc.innerHTML = ''; afc.classList.add('hidden'); }
+      if (ipa) ipa.classList.add('hidden'); if (ipc) ipc.innerHTML = '';
     }
 
     /***********************
      * Settings Management
      ***********************/
     function setupTabNavigation() {
-      const tabButtons = document.querySelectorAll('.tab-btn'); 
-      const tabContents = document.querySelectorAll('.tab-content');
-      
-      tabButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          tabButtons.forEach(btn => { 
-            btn.classList.remove('bg-deepseek-500', 'text-white'); 
-            btn.classList.add('text-gray-400'); 
-          });
-          tabContents.forEach(content => { 
-            content.classList.add('hidden'); 
-          });
-          
-          button.classList.add('bg-deepseek-500', 'text-white'); 
-          button.classList.remove('text-gray-400');
-          
-          const tabId = button.getAttribute('data-tab'); 
-          const tabContent = document.getElementById(tabId);
-          if (tabContent) { 
-            tabContent.classList.remove('hidden'); 
-          }
-        });
-      });
+      const tb = document.querySelectorAll('.tab-btn'), tc = document.querySelectorAll('.tab-content');
+      tb.forEach(b => b.addEventListener('click', () => {
+        tb.forEach(btn => { btn.classList.remove('bg-deepseek-500', 'text-white'); btn.classList.add('text-gray-400'); });
+        tc.forEach(c => c.classList.add('hidden'));
+        b.classList.add('bg-deepseek-500', 'text-white'); b.classList.remove('text-gray-400');
+        const tid = b.getAttribute('data-tab'); document.getElementById(tid)?.classList.remove('hidden');
+      }));
     }
-    
     function setupSliders() {
-      document.querySelectorAll('input[type="range"]').forEach(slider => {
-        const valueDisplay = document.getElementById(`${slider.id}Value`);
-        if (valueDisplay) { 
-          valueDisplay.textContent = slider.value; 
-          updateRangeColor(slider); 
-          slider.addEventListener('input', () => { 
-            valueDisplay.textContent = slider.value; 
-            updateRangeColor(slider); 
-          });
-        }
+      document.querySelectorAll('input[type="range"]').forEach(s => {
+        const vd = document.getElementById(`${s.id}Value`);
+        if (vd) { vd.textContent = s.value; updateRangeColor(s); s.addEventListener('input', () => { vd.textContent = s.value; updateRangeColor(s); });}
       });
     }
-    
-    function updateRangeColor(slider) { 
-      const min = parseFloat(slider.min) || 0; 
-      const max = parseFloat(slider.max) || 1; 
-      const value = parseFloat(slider.value) || 0; 
-      const percent = ((value - min) / (max - min)) * 100; 
-      slider.style.setProperty('--value-percent', `${percent}%`);
-    }
+    function updateRangeColor(s) { const min=parseFloat(s.min)||0, max=parseFloat(s.max)||1, val=parseFloat(s.value)||0; s.style.setProperty('--value-percent', `${((val-min)/(max-min))*100}%`); }
 
     function openSettingsModal() {
-      // Set reasoning method
-      const reasoningRadio = document.getElementById(`${CONFIG.reasoningMethod}`.replace('_', ''));
-      if (reasoningRadio) reasoningRadio.checked = true;
+      document.getElementById(`${CONFIG.reasoningMethod}`.replace('_', ''))?.checked = true;
+      document.getElementById(`cod${CONFIG.codWordLimit}Words`)?.checked = true; // Should be cod15Words
+      document.getElementById(`${CONFIG.reasoningEnhancement}${CONFIG.reasoningEnhancement === 'adaptive' ? 'Complexity' : 'Reasoning'}`)?.checked = true;
       
-      // Set CoD word limit
-      const wordLimitRadio = document.getElementById(`cod${CONFIG.codWordLimit}Words`);
-      if (wordLimitRadio) wordLimitRadio.checked = true;
-      
-      // Set reasoning enhancement
-      const enhancementRadio = document.getElementById(`${CONFIG.reasoningEnhancement}${CONFIG.reasoningEnhancement === 'adaptive' ? 'Complexity' : 'Reasoning'}`);
-      if (enhancementRadio) enhancementRadio.checked = true;
-      
-      // Set reflection settings
       document.getElementById('enableSelfVerification').checked = CONFIG.reflectionSettings.enableSelfVerification;
       document.getElementById('enableErrorDetection').checked = CONFIG.reflectionSettings.enableErrorDetection;
       document.getElementById('enableAlternativeSearch').checked = CONFIG.reflectionSettings.enableAlternativeSearch;
       document.getElementById('enableConfidenceAssessment').checked = CONFIG.reflectionSettings.enableConfidenceAssessment;
       document.getElementById('verificationDepth').value = CONFIG.reflectionSettings.verificationDepth;
       
-      setSliderAndValue("temp", CONFIG.temperature); 
-      setSliderAndValue("topP", CONFIG.topP); 
-      setSliderAndValue("topK", CONFIG.topK); 
-      setSliderAndValue("maxTokens", CONFIG.maxTokens);
-      
-      const streamingToggle = document.getElementById('streamingToggle'); 
-      if (streamingToggle) streamingToggle.checked = CONFIG.enableStreaming;
-      
-      const modal = document.getElementById("settingsModal"); 
-      if (modal) modal.style.display = "flex";
-    }
+      setSliderAndValue("temp", CONFIG.temperature); setSliderAndValue("topP", CONFIG.topP); 
+      setSliderAndValue("topK", CONFIG.topK); setSliderAndValue("maxTokens", CONFIG.maxTokens);
+      document.getElementById('streamingToggle').checked = CONFIG.enableStreaming;
+      document.getElementById("settingsModal").style.display = "flex";
 
-    function setSliderAndValue(id, value) { 
-      const slider = document.getElementById(id); 
-      const valueDisplay = document.getElementById(`${id}Value`); 
-      if (slider) { 
-        slider.value = value; 
-        updateRangeColor(slider); 
-      } 
-      if (valueDisplay) valueDisplay.textContent = value; 
+      // Update model paths in settings UI
+      document.getElementById('modelPathStage1').value = CONFIG.currentModel;
+      document.getElementById('modelPathStage2').value = CONFIG.stage2Model;
     }
-    
-    function closeSettingsModal() { 
-      const modal = document.getElementById("settingsModal"); 
-      if (modal) modal.style.display = "none"; 
-    }
+    function setSliderAndValue(id, value) { const s=document.getElementById(id), vd=document.getElementById(`${id}Value`); if(s){s.value=value; updateRangeColor(s);} if(vd)vd.textContent=value; }
+    function closeSettingsModal() { document.getElementById("settingsModal").style.display = "none"; }
     
     function saveSettings() {
-      // Save reasoning method
-      const reasoningRadios = document.getElementsByName("reasoningMethod"); 
-      for (const radio of reasoningRadios) {
-        if (radio.checked) CONFIG.reasoningMethod = radio.value;
-      }
+      document.getElementsByName("reasoningMethod").forEach(r => { if (r.checked) CONFIG.reasoningMethod = r.value; });
+      // CoD word limit is fixed to 15
+      CONFIG.codWordLimit = 15; 
+      document.getElementById('cod15Words').checked = true; // Ensure UI reflects this
+
+      // Reasoning enhancement is fixed to 'fixed' for CoD-15
+      CONFIG.reasoningEnhancement = 'fixed';
+      document.getElementById('fixedReasoning').checked = true;
+      document.getElementById('adaptiveComplexity').disabled = true;
+
+
+      CONFIG.reflectionSettings.enableSelfVerification = document.getElementById('enableSelfVerification').checked;
+      CONFIG.reflectionSettings.enableErrorDetection = document.getElementById('enableErrorDetection').checked;
+      CONFIG.reflectionSettings.enableAlternativeSearch = document.getElementById('enableAlternativeSearch').checked;
+      CONFIG.reflectionSettings.enableConfidenceAssessment = document.getElementById('enableConfidenceAssessment').checked;
+      CONFIG.reflectionSettings.verificationDepth = document.getElementById('verificationDepth').value;
       
-      // Save CoD word limit
-      const wordLimitRadios = document.getElementsByName("codWordLimit"); 
-      for (const radio of wordLimitRadios) {
-        if (radio.checked) CONFIG.codWordLimit = parseInt(radio.value);
-      }
-      
-      // Save reasoning enhancement
-      const enhancementRadios = document.getElementsByName("reasoningEnhancement"); 
-      for (const radio of enhancementRadios) {
-        if (radio.checked) CONFIG.reasoningEnhancement = radio.value;
-      }
-      
-      // Save reflection settings
-      CONFIG.reflectionSettings.enableSelfVerification = document.getElementById('enableSelfVerification')?.checked || false;
-      CONFIG.reflectionSettings.enableErrorDetection = document.getElementById('enableErrorDetection')?.checked || false;
-      CONFIG.reflectionSettings.enableAlternativeSearch = document.getElementById('enableAlternativeSearch')?.checked || false;
-      CONFIG.reflectionSettings.enableConfidenceAssessment = document.getElementById('enableConfidenceAssessment')?.checked || false;
-      CONFIG.reflectionSettings.verificationDepth = document.getElementById('verificationDepth')?.value || 'standard';
-      
-      const streamingToggle = document.getElementById('streamingToggle'); 
-      if (streamingToggle) { 
-        CONFIG.enableStreaming = streamingToggle.checked; 
-      }
-      
+      CONFIG.enableStreaming = document.getElementById('streamingToggle').checked;
       CONFIG.temperature = parseFloat(document.getElementById("temp").value); 
       CONFIG.topP = parseFloat(document.getElementById("topP").value); 
       CONFIG.topK = parseInt(document.getElementById("topK").value); 
       CONFIG.maxTokens = parseInt(document.getElementById("maxTokens").value);
       
-      // Save to localStorage
+      // Models are fixed but could be made configurable here if desired in future
+      // CONFIG.currentModel = document.getElementById('modelPathStage1').value;
+      // CONFIG.stage2Model = document.getElementById('modelPathStage2').value;
+
       localStorage.setItem("enhancedCodConfig", JSON.stringify(CONFIG));
-      
-      closeSettingsModal(); 
-      showNotification("Enhanced settings saved");
+      closeSettingsModal(); showNotification("Enhanced settings saved (CoD-15 enforced)");
     }
 
     /***********************
      * File and Image Handling
      ***********************/
-    let attachedFiles = [];
-    let attachedImages = [];
-
+    let attachedFiles = []; let attachedImages = [];
+    function handleImageInput() { /* ... same as before ... */ }
+    function createImagePreview(file, container) { /* ... same as before ... */ }
+    function handleFileInput() { /* ... same as before ... */ }
+    function createFilePreview(file, container) { /* ... same as before ... */ }
+    function getFileIcon(fileType) { /* ... same as before ... */ }
+     // Placeholder for the full image/file handling functions if they were elided for brevity
     function handleImageInput() {
-      const imageInput = document.getElementById('imageInput');
-      const imagePreviewArea = document.getElementById('imagePreviewArea');
-      const imagePreviewContainer = document.getElementById('imagePreviewContainer');
-      
+      const imageInput = document.getElementById('imageInput'); const imagePreviewArea = document.getElementById('imagePreviewArea'); const imagePreviewContainer = document.getElementById('imagePreviewContainer');
       if (!imageInput || !imagePreviewArea || !imagePreviewContainer) return;
-      
       imageInput.addEventListener('change', (event) => {
         try {
-          const files = event.target.files;
-          const maxFileSize = 10 * 1024 * 1024; // 10MB
-          const maxImages = 30;
-          
-          if (attachedImages.length + files.length > maxImages) {
-            showNotification(`Maximum ${maxImages} images allowed per request`);
-            return;
-          }
-          
+          const files = event.target.files; const maxFileSize = 10 * 1024 * 1024; const maxImages = 30;
+          if (attachedImages.length + files.length > maxImages) { showNotification(`Maximum ${maxImages} images allowed`); return; }
           for (let i = 0; i < files.length; i++) {
             const file = files[i];
-            
-            if (!file.type.startsWith('image/')) {
-              showNotification(`${file.name} is not an image file`);
-              continue;
-            }
-            
-            if (file.size > maxFileSize) {
-              showNotification(`Image ${file.name} is too large (max 10MB)`);
-              continue;
-            }
-            
-            if (attachedImages.some(img => img.name === file.name && img.size === file.size)) {
-              showNotification(`Image ${file.name} already attached`);
-              continue;
-            }
-            
-            attachedImages.push(file);
-            createImagePreview(file, imagePreviewContainer);
+            if (!file.type.startsWith('image/')) { showNotification(`${file.name} is not an image`); continue; }
+            if (file.size > maxFileSize) { showNotification(`Image ${file.name} too large (max 10MB)`); continue; }
+            if (attachedImages.some(img => img.name === file.name && img.size === file.size)) { showNotification(`Image ${file.name} already attached`); continue; }
+            attachedImages.push(file); createImagePreview(file, imagePreviewContainer);
           }
-          
-          if (attachedImages.length > 0) {
-            imagePreviewArea.classList.remove('hidden');
-          }
-          
+          if (attachedImages.length > 0) imagePreviewArea.classList.remove('hidden');
           imageInput.value = '';
-        } catch (error) {
-          console.error('Error handling image upload:', error);
-          showNotification('Error uploading images.');
-        }
+        } catch (error) { console.error('Error handling image upload:', error); showNotification('Error uploading images.'); }
       });
     }
-
     function createImagePreview(file, container) {
-      const imagePreview = document.createElement('div');
-      imagePreview.className = 'relative bg-dark-700 rounded-lg border border-dark-600 overflow-hidden';
-      
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const img = document.createElement('img');
-        img.className = 'w-16 h-16 object-cover';
-        img.src = e.target.result;
-        
-        const overlay = document.createElement('div');
-        overlay.className = 'absolute inset-0 bg-black/50 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center';
-        
-        const removeButton = document.createElement('button');
-        removeButton.className = 'bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600 transition';
-        removeButton.innerHTML = '×';
-        removeButton.addEventListener('click', () => {
-          attachedImages = attachedImages.filter(f => f !== file);
-          imagePreview.remove();
-          if (attachedImages.length === 0) {
-            document.getElementById('imagePreviewArea').classList.add('hidden');
-          }
-        });
-        
-        overlay.appendChild(removeButton);
-        imagePreview.appendChild(img);
-        imagePreview.appendChild(overlay);
-        
-        const fileName = document.createElement('div');
-        fileName.className = 'absolute bottom-0 left-0 right-0 bg-black/75 text-white text-xs p-1 truncate';
-        fileName.textContent = file.name.length > 12 ? file.name.substring(0, 9) + '...' : file.name;
-        imagePreview.appendChild(fileName);
+      const p = document.createElement('div'); p.className = 'relative bg-dark-700 rounded-lg border border-dark-600 overflow-hidden';
+      const r = new FileReader();
+      r.onload = (e) => {
+        const img = document.createElement('img'); img.className = 'w-16 h-16 object-cover'; img.src = e.target.result;
+        const o = document.createElement('div'); o.className = 'absolute inset-0 bg-black/50 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center';
+        const b = document.createElement('button'); b.className = 'bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600 transition'; b.innerHTML = '×';
+        b.addEventListener('click', () => { attachedImages = attachedImages.filter(f => f !== file); p.remove(); if (attachedImages.length === 0) document.getElementById('imagePreviewArea').classList.add('hidden'); });
+        o.appendChild(b); p.appendChild(img); p.appendChild(o);
+        const fn = document.createElement('div'); fn.className = 'absolute bottom-0 left-0 right-0 bg-black/75 text-white text-xs p-1 truncate'; fn.textContent = file.name.length > 12 ? file.name.substring(0, 9) + '...' : file.name; p.appendChild(fn);
       };
-      
-      reader.readAsDataURL(file);
-      container.appendChild(imagePreview);
+      r.readAsDataURL(file); container.appendChild(p);
     }
-
     function handleFileInput() {
-      const fileInput = document.getElementById('fileInput');
-      const attachedFilesContainer = document.getElementById('attachedFiles');
+      const fileInput = document.getElementById('fileInput'); const attachedFilesContainer = document.getElementById('attachedFiles');
       if (!fileInput || !attachedFilesContainer) return;
-      
       fileInput.addEventListener('change', (event) => {
         try {
-          const files = event.target.files;
-          const maxFileSize = 10 * 1024 * 1024;
-          
+          const files = event.target.files; const maxFileSize = 10 * 1024 * 1024;
           if (files.length > 0) {
             attachedFilesContainer.classList.remove('hidden');
             for (let i = 0; i < files.length; i++) {
               const file = files[i];
-              if (file.size > maxFileSize) { 
-                showNotification(`File ${file.name} is too large (max 10MB)`); 
-                continue; 
-              }
-              if (attachedFiles.some(f => f.name === file.name && f.size === file.size)) { 
-                showNotification(`File ${file.name} already attached`); 
-                continue; 
-              }
-              attachedFiles.push(file);
-              createFilePreview(file, attachedFilesContainer);
+              if (file.size > maxFileSize) { showNotification(`File ${file.name} too large (max 10MB)`); continue; }
+              if (attachedFiles.some(f => f.name === file.name && f.size === file.size)) { showNotification(`File ${file.name} already attached`); continue; }
+              attachedFiles.push(file); createFilePreview(file, attachedFilesContainer);
             }
             fileInput.value = '';
           }
-        } catch (error) { 
-          console.error('Error handling file upload:', error); 
-          showNotification('Error uploading file.'); 
-        }
+        } catch (error) { console.error('Error handling file upload:', error); showNotification('Error uploading file.'); }
       });
     }
-
     function createFilePreview(file, container) {
-      const filePreview = document.createElement('div');
-      filePreview.className = 'relative bg-dark-700 rounded-lg p-2 border border-dark-600';
-      
-      const icon = document.createElement('div'); 
-      icon.className = 'w-16 h-16 flex items-center justify-center bg-dark-600 rounded text-2xl'; 
-      icon.textContent = getFileIcon(file.type); 
-      filePreview.appendChild(icon);
-      
-      const fileName = document.createElement('div'); 
-      fileName.className = 'mt-1 text-xs text-gray-400 text-center truncate w-16'; 
-      fileName.textContent = file.name.length > 15 ? file.name.substring(0, 12) + '...' : file.name; 
-      filePreview.appendChild(fileName);
-      
-      const removeButton = document.createElement('button'); 
-      removeButton.className = 'absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs'; 
-      removeButton.textContent = '×';
-      removeButton.addEventListener('click', () => { 
-        attachedFiles = attachedFiles.filter(f => f !== file); 
-        filePreview.remove(); 
-        if (attachedFiles.length === 0) container.classList.add('hidden'); 
-      });
-      
-      filePreview.appendChild(removeButton); 
-      container.appendChild(filePreview);
+      const p = document.createElement('div'); p.className = 'relative bg-dark-700 rounded-lg p-2 border border-dark-600';
+      const i = document.createElement('div'); i.className = 'w-16 h-16 flex items-center justify-center bg-dark-600 rounded text-2xl'; i.textContent = getFileIcon(file.type); p.appendChild(i);
+      const fn = document.createElement('div'); fn.className = 'mt-1 text-xs text-gray-400 text-center truncate w-16'; fn.textContent = file.name.length > 15 ? file.name.substring(0, 12) + '...' : file.name; p.appendChild(fn);
+      const b = document.createElement('button'); b.className = 'absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs'; b.textContent = '×';
+      b.addEventListener('click', () => { attachedFiles = attachedFiles.filter(f => f !== file); p.remove(); if (attachedFiles.length === 0) container.classList.add('hidden'); });
+      p.appendChild(b); container.appendChild(p);
+    }
+    function getFileIcon(type) {
+      if (type.startsWith('image/')) return '🖼️'; if (type.startsWith('text/')) return '📄'; if (type.includes('pdf')) return '📑'; 
+      if (type.includes('word') || type.includes('document')) return '📝'; if (type.includes('excel') || type.includes('spreadsheet')) return '📊';
+      if (type.includes('audio')) return '🎵'; if (type.includes('video')) return '🎬'; return '📦';
     }
 
-    function getFileIcon(fileType) {
-      if (fileType.startsWith('image/')) return '🖼️'; 
-      if (fileType.startsWith('text/')) return '📄'; 
-      if (fileType.includes('pdf')) return '📑'; 
-      if (fileType.includes('word') || fileType.includes('document')) return '📝'; 
-      if (fileType.includes('excel') || fileType.includes('spreadsheet')) return '📊'; 
-      if (fileType.includes('audio')) return '🎵'; 
-      if (fileType.includes('video')) return '🎬'; 
-      return '📦';
-    }
 
     /***********************
      * Mobile Navigation
      ***********************/
+    function initMobileNavigation() { /* ... same as before ... */ }
+     // Placeholder for full mobile nav
     function initMobileNavigation() {
-      const mobileSidebarToggle = document.getElementById('mobileSidebarToggle'); 
-      const mobileSidebar = document.getElementById('mobileSidebar'); 
-      const closeMobileSidebar = document.getElementById('closeMobileSidebar');
-      
-      if (mobileSidebarToggle && mobileSidebar) {
-        mobileSidebarToggle.addEventListener('click', () => { 
-          mobileSidebar.classList.remove('-translate-x-full'); 
-          mobileSidebar.classList.add('translate-x-0'); 
-        });
-      }
-      
-      if (closeMobileSidebar && mobileSidebar) {
-        closeMobileSidebar.addEventListener('click', () => { 
-          mobileSidebar.classList.remove('translate-x-0'); 
-          mobileSidebar.classList.add('-translate-x-full'); 
-        });
-      }
-      
-      document.getElementById('mobileNewThreadBtn')?.addEventListener('click', () => { 
-        createNewThread(); 
-        mobileSidebar.classList.remove('translate-x-0'); 
-        mobileSidebar.classList.add('-translate-x-full'); 
-      });
+      const mst = document.getElementById('mobileSidebarToggle'), ms = document.getElementById('mobileSidebar'), cms = document.getElementById('closeMobileSidebar');
+      if (mst && ms) mst.addEventListener('click', () => { ms.classList.remove('-translate-x-full'); ms.classList.add('translate-x-0'); });
+      if (cms && ms) cms.addEventListener('click', () => { ms.classList.remove('translate-x-0'); ms.classList.add('-translate-x-full'); });
+      document.getElementById('mobileNewThreadBtn')?.addEventListener('click', () => { createNewThread(); if(ms) {ms.classList.remove('translate-x-0'); ms.classList.add('-translate-x-full');} });
     }
+
 
     /***********************
      * Download Functions
      ***********************/
+    function downloadCurrentThreadAsTxt() { /* ... same as before, but reflect multi-model in header ... */ }
+    // Placeholder for full download
     function downloadCurrentThreadAsTxt() {
-      const thread = threads.find(t => t.id === currentThreadId);
-      if (!thread) { 
-        showNotification("Error: No active session found"); 
-        return; 
-      }
-      
-      let content = `Enhanced Chain of Draft Studio - DeepSeek V3-0324\n`;
-      content += `Model: ${CONFIG.currentModel}\n`;
-      content += `Reasoning: ${CONFIG.reasoningMethod.toUpperCase()}\n`;
-      content += `Word Limit: ${CONFIG.codWordLimit} words per step\n`;
-      content += `Verification Depth: ${CONFIG.reflectionSettings.verificationDepth}\n`;
-      content += `Adaptive: ${CONFIG.reasoningEnhancement === 'adaptive' ? 'Enabled' : 'Disabled'}\n`;
-      content += `Export Date: ${new Date().toLocaleString()}\n\n`;
-      content += `${'='.repeat(60)}\n\n`;
-      
+      const thread = threads.find(t => t.id === currentThreadId); if (!thread) { showNotification("Error: No active session"); return; }
+      let content = `Enhanced Chain of Draft Studio - Multi-Model Reasoning\n`;
+      content += `Stage 1 Model: ${CONFIG.currentModel}\nStage 2 Model: ${CONFIG.stage2Model}\n`;
+      content += `Reasoning: ${CONFIG.reasoningMethod.toUpperCase()}\nCoD Word Limit: ${CONFIG.codWordLimit} words/step\n`;
+      content += `Verification Depth: ${CONFIG.reflectionSettings.verificationDepth}\nExport Date: ${new Date().toLocaleString()}\n\n${'='.repeat(60)}\n\n`;
       thread.messages.forEach(msg => {
         if (msg.isPlaceholder) return;
-        const prefix = msg.sender.toUpperCase();
-        content += `${prefix}:\n${msg.content}\n\n`;
-        
-        if (msg.sender === 'bot' && !msg.isPlaceholder && !msg.isStreaming) {
-          if (msg.stageInfo) {
-            content += `[${msg.stageInfo}]\n`;
-          }
-          if (msg.reasoning) {
-            content += `[Adaptive Reasoning: ${msg.reasoning}]\n`;
-          }
-          if (msg.wordCount !== undefined) {
-            content += `[Words: ${msg.wordCount}]\n`;
-          }
-          if (msg.totalTokens !== undefined) {
-            content += `[Tokens: ${msg.totalTokens}]\n`;
-          }
-          if (msg.durationSeconds !== undefined) {
-            content += `[Stage Time: ${msg.durationSeconds}s]\n`;
-          }
-          if (msg.totalProcessingTime !== undefined) {
-            content += `[Total Time: ${msg.totalProcessingTime}s]\n`;
-          }
+        content += `${msg.sender.toUpperCase()}:\n${msg.content}\n\n`;
+        if (msg.sender === 'bot' && !msg.isPlaceholder) {
+          if (msg.stageInfo) content += `[${msg.stageInfo}]\n`;
+          if (msg.reasoning && CONFIG.reasoningEnhancement === 'adaptive') content += `[Adaptive Note: ${msg.reasoning}]\n`;
+          if (msg.wordCount !== undefined) content += `[Words: ${msg.wordCount}]\n`;
+          if (msg.totalTokens !== undefined) content += `[Tokens: ${msg.totalTokens}]\n`;
+          if (msg.durationSeconds !== undefined) content += `[Stage Time: ${msg.durationSeconds}s]\n`;
+          if (msg.totalProcessingTime !== undefined) content += `[Total Time: ${msg.totalProcessingTime}s]\n`;
           content += "\n";
         }
       });
-      
-      const blob = new Blob([content], { type: "text/plain" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `${thread.name}_Enhanced_CoD_DeepSeek.txt`;
-      a.style.display = 'none';
-      document.body.appendChild(a);
-      a.click();
-      setTimeout(() => { 
-        document.body.removeChild(a); 
-        URL.revokeObjectURL(url); 
-      }, 100);
-      showNotification("Enhanced research export downloaded");
+      const blob = new Blob([content], { type: "text/plain" }); const url = URL.createObjectURL(blob);
+      const a = document.createElement("a"); a.href = url; a.download = `${thread.name}_MultiStage_CoD.txt`;
+      document.body.appendChild(a); a.click(); setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
+      showNotification("Research export downloaded");
     }
+
 
     /***********************
      * App Initialization
@@ -2309,123 +1750,39 @@ FORMAT:
         const savedConfig = localStorage.getItem("enhancedCodConfig");
         if (savedConfig) {
           const parsed = JSON.parse(savedConfig);
+          // Carefully merge, prioritizing fixed values from this version
           Object.assign(CONFIG, parsed);
+          CONFIG.codWordLimit = 15; // Enforce
+          CONFIG.reasoningEnhancement = 'fixed'; // Enforce
+          // Ensure model paths are from the current code version if not in saved or if they need updating
+          CONFIG.currentModel = "accounts/fireworks/models/deepseek-v3-0324";
+          CONFIG.stage2Model = "accounts/fireworks/models/qwen3-30b-a3b";
         }
-      } catch (error) {
-        console.warn("Failed to load saved settings:", error);
-      }
-      
-      // Load memory
+      } catch (error) { console.warn("Failed to load saved settings:", error); }
       loadEnhancedMemoryFromStorage();
     }
-    
-    function initApp() { 
-      loadPersistedSettings(); 
-      createNewThread(); 
-      initEventListeners(); 
-      initMobileNavigation(); 
-    }
-    
+    function initApp() { loadPersistedSettings(); createNewThread(); initEventListeners(); initMobileNavigation(); }
     function initEventListeners() {
-      const addListener = (id, event, handler) => { 
-        const element = document.getElementById(id); 
-        if (element) {
-          element.addEventListener(event, handler); 
-        } else {
-          console.warn(`Element "${id}" not found`); 
-        }
-      };
-      
-      addListener("openSettings", "click", openSettingsModal); 
-      addListener("closeSettings", "click", closeSettingsModal); 
-      addListener("closeModalX", "click", closeSettingsModal); 
-      addListener("saveSettings", "click", saveSettings);
-      
-      addListener("newThreadBtn", "click", createNewThread); 
-      addListener("downloadTxtBtn", "click", downloadCurrentThreadAsTxt);
-      
-      addListener("clearThreadBtn", "click", () => { 
-        if (confirm("Clear all messages in this session?")) { 
-          const thread = threads.find(t => t.id === currentThreadId); 
-          if (thread) { 
-            thread.messages = []; 
-            renderCurrentThreadMessages(); 
-            showNotification("Session cleared"); 
-          }
-        }
-      });
-
-      addListener("deleteThreadBtn", "click", () => { 
-        if (confirm("Are you sure you want to delete this session?")) { 
-          threads = threads.filter(thread => thread.id !== currentThreadId);
-          if (threads.length > 0) {
-            currentThreadId = threads[0].id;
-          } else {
-            createNewThread(); 
-            return;
-          }
-          updateThreadList();
-          renderCurrentThreadMessages();
-          showNotification("Session deleted");
-        }
-      });
-      
-      const textarea = document.getElementById('userInput');
-      if (textarea) { 
-        textarea.addEventListener('input', () => { 
-          textarea.style.height = 'auto'; 
-          textarea.style.height = (textarea.scrollHeight) + 'px'; 
-        }); 
-        
-        textarea.addEventListener('keydown', (e) => { 
-          if (e.key === 'Enter' && !e.shiftKey) { 
-            e.preventDefault(); 
-            document.getElementById('sendBtn')?.click(); 
-          }
-        });
+      const addL = (id, ev, h) => { const e = document.getElementById(id); if (e) e.addEventListener(ev, h); else console.warn(`Element "${id}" not found`); };
+      addL("openSettings", "click", openSettingsModal); addL("closeSettings", "click", closeSettingsModal);
+      addL("closeModalX", "click", closeSettingsModal); addL("saveSettings", "click", saveSettings);
+      addL("newThreadBtn", "click", createNewThread); addL("downloadTxtBtn", "click", downloadCurrentThreadAsTxt);
+      addL("clearThreadBtn", "click", () => { if (confirm("Clear messages in this session?")) { const t = threads.find(t => t.id === currentThreadId); if (t) { t.messages = []; renderCurrentThreadMessages(); showNotification("Session cleared"); } } });
+      addL("deleteThreadBtn", "click", () => { if (confirm("Delete this session?")) { threads = threads.filter(t => t.id !== currentThreadId); if (threads.length > 0) currentThreadId = threads[0].id; else { createNewThread(); return; } updateThreadList(); renderCurrentThreadMessages(); showNotification("Session deleted"); } });
+      const ta = document.getElementById('userInput');
+      if (ta) {
+        ta.addEventListener('input', () => { ta.style.height = 'auto'; ta.style.height = (ta.scrollHeight) + 'px'; });
+        ta.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); document.getElementById('sendBtn')?.click(); } });
       }
-      
-      addListener("sendBtn", "click", () => { 
-        const textarea = document.getElementById('userInput'); 
-        if (textarea) { 
-          const message = textarea.value.trim(); 
-          if (message || attachedFiles.length > 0 || attachedImages.length > 0) { 
-            sendMessage(message); 
-            textarea.value = ''; 
-            textarea.style.height = 'auto'; 
-          }
-        }
-      });
-      
-      handleFileInput();
-      handleImageInput();
-      
-      window.addEventListener("click", (event) => { 
-        const settingsModal = document.getElementById("settingsModal"); 
-        if (settingsModal && event.target === settingsModal) {
-          closeSettingsModal(); 
-        }
-      });
-      
-      setTimeout(() => { 
-        setupTabNavigation(); 
-        setupSliders(); 
-      }, 100);
+      addL("sendBtn", "click", () => { if (ta) { const m = ta.value.trim(); if (m || attachedFiles.length > 0 || attachedImages.length > 0) { sendMessage(m); ta.value = ''; ta.style.height = 'auto'; } } });
+      handleFileInput(); handleImageInput();
+      window.addEventListener("click", (e) => { const sm = document.getElementById("settingsModal"); if (sm && e.target === sm) closeSettingsModal(); });
+      setTimeout(() => { setupTabNavigation(); setupSliders(); }, 100);
     }
     
     document.addEventListener("DOMContentLoaded", async function() {
-      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.classList.add('dark');
-      }
-      
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => { 
-        if (event.matches) {
-          document.documentElement.classList.add('dark'); 
-        } else {
-          document.documentElement.classList.remove('dark'); 
-        }
-      });
-      
+      if (window.matchMedia?.('(prefers-color-scheme: dark)').matches) document.documentElement.classList.add('dark');
+      window.matchMedia?.('(prefers-color-scheme: dark)').addEventListener('change', e => { document.documentElement.classList.toggle('dark', e.matches); });
       initApp();
     });
   </script>
